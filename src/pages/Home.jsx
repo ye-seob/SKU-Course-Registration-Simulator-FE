@@ -1,7 +1,10 @@
 import React from 'react';
+import UserInfo from "../components/UserInfo.jsx";
 
 const Home = () => {
-    return <h2>메인 페이지</h2>;
+    return <>
+        <UserInfo/>
+    </>;
 };
 
 export default Home;
