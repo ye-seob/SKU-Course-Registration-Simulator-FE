@@ -3,12 +3,14 @@ import {Route, Routes} from 'react-router-dom';
 
 import Home from '../pages/Home.jsx';
 import Signup from "../pages/Signup.jsx";
+import Login from "../pages/Login.jsx";
 
 const Router = () => {
     return (
         <Routes>
             {/* 메인 경로 (/) */}
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
 
             {/* 일치하는 경로가 없을 때 보여줄 404 페이지 */}
