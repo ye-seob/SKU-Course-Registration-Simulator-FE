@@ -1,0 +1,19 @@
+.course-warning-wrapper {
+    height: 500px;
+    width: 100%;
+    background-color: #c5de96;
+    border: 1px solid white;
+}
+
+.warning-title-box {
+    color: red;
+    height: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.warningInfo-text{
+    font-size: 13px;
+    line-height: 0.1;
+    text-align: center;
+}
