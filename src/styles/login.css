@@ -11,16 +11,22 @@
   ========================================
 */
 .login-header {
-    width: 75%;
+    width: 80%;
     display: flex;
     justify-content: space-between; /* 로고는 왼쪽, 텍스트는 오른쪽 끝으로 배치 */
-    align-items: flex-end;
+    align-items: center;
     margin-bottom: 10px; /* 파란 박스와의 간격 */
-    padding: 0 10px; /* 좌우 살짝 여백 */
+    padding: 0 10px;
+}
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: auto;
 }
 
 .logo-img {
-    height: 60px; /* 로고 이미지 높이 조절 */
+    height: 60px;
     object-fit: contain;
 }
 
@@ -28,8 +34,8 @@
 .login-header-title {
     color: #3b5e96;
     font-weight: bold;
+    width: 150px;
     font-size: 14px;
-    margin-bottom: 20px;
 }
 
 /* ========================================
