@@ -1,38 +1,33 @@
 .user-info-container {
     background-color: #f8fcf4;
-    width: 300px;
+    width: 180px;
     overflow: hidden;
 }
 
 
 .user-info-header {
     background-color: #c5de96;
-    padding: 10px 15px;
-    height: 30px;
+    padding: 7px 10px;
+    height: 15px;
     display: flex;
     align-items: center;
 }
 
 .user-icon {
-    /* 아이콘과 텍스트 사이 간격 */
     margin-right: 5px;
-    font-size: 1.2em;
+    font-size: 0.9em;
 }
 
 .user-title {
-    font-size: 1.1em;
+    font-size: 0.9em;
     font-weight: 600;
     color: white;
-    margin-top: 12px;
+    margin-top: 10px;
 }
-
-/* ------------------------------------------------ */
-/* 정보 목록 스타일 */
-/* ------------------------------------------------ */
 
 .user-details-list {
     padding: 15px;
-    line-height: 1.8;
+    line-height: 1.2;
 }
 
 .detail-item {

@@ -4,7 +4,7 @@ import '../styles/userInfo.css';
 const UserInfo = () => {
     const userData = {
         semester: '2026년 1학기',
-        studentId: '2023216049',
+        studentId: 'a2023216049',
         name: '변예섭',
         major: '소프트웨어학과',
         track: '공통전공',
@@ -26,7 +26,6 @@ const UserInfo = () => {
 
     return (
         <div className="user-info-container">
-            {/* 상단 사용자 정보 제목/헤더 영역 */}
             <div className="user-info-header">
                 <span className="user-icon">
                     🧑‍💻
