@@ -1,0 +1,19 @@
+.custom-dropdown {
+    width: 90%;
+    height: 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #333;
+    background-color: #eaf5d8;
+    box-sizing: border-box;
+    padding: 0 5px;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-5.4H18.6c-5.8%200-11.1%203.2-13.2%208.6-2.1%205.4-.5%2011.6%204.2%2015.4l129%20129c3.2%203.2%207%205%2011.2%205s8.1-1.8%2011.2-5l129-129c4.7-3.8%206.3-10%204.2-15.4z%22%2F%3E%3C%2Fsvg%3E'); /* 작은 화살표 추가 */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 8px;
+}
+
+
