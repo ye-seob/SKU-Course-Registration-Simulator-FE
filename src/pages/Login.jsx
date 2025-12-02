@@ -1,10 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/login.css';
+import {useLogin} from "../hooks/useLogin.js";
 
 const logoUrl = "https://s.skuniv.ac.kr/course/img/sugang/logo2.gif";
 const loginBtnUrl = "https://s.skuniv.ac.kr/course/img/sugang/login2.gif"
 
-function Login() {
+const Login = () => {
+    const [studentId, setStudentId] = useState("");
+    const [password, setPassword] = useState("");
+
+    const loginMutation = useLogin();
+
+    const handleLogin = () => {
+        loginMutation.mutate(
+            { studentId, password },
+            {
+                onSuccess: (res) => {
+
+                },
+                onError: (e) => {
+                    alert(JSON.stringify(e.toString(), null, 2));
+                }
+            }
+        );
+    };
     return (
         // 전체를 감싸는 컨테이너
         <div className="login-container">
@@ -23,16 +42,26 @@ function Login() {
                     <div className="input-group">
                         <div className="input-row">
                             <label className="input-label">아이디</label>
-                            <input type="text" className="input-field" />
+                            <input
+                                type="text"
+                                className="input-field"
+                                value={studentId}
+                                onChange={(e) => setStudentId(e.target.value)}
+                            />
                         </div>
                         <div className="input-row">
                             <label className="input-label">비밀번호</label>
-                            <input type="password" className="input-field" />
+                            <input
+                                type="password"
+                                className="input-field"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
                     </div>
 
                     {/* 로그인 버튼  */}
-                    <img src={loginBtnUrl} alt="loginBtn" className="btn-img" />
+                    <img src={loginBtnUrl} alt="loginBtn" className="btn-img"  onClick={handleLogin}/>
 
                 </div>
 
