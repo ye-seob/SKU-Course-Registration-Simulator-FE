@@ -12,6 +12,10 @@ export const useLogin = () => {
         onSuccess: (data) => {
             const userData = data.data.data;
 
+            const token = userData.token;
+
+            localStorage.setItem('accessToken',token)
+
             // Zustand 상태에 저장
             setUser(userData);
 
