@@ -1,54 +1,54 @@
 .lecture-wrapper {
     width: 100%;
+    min-width: 1000px;
     padding: 10px;
     box-sizing: border-box;
 }
+.lecture-table-container{
+    overflow-y: auto;
+    max-height: 300px;
+}
 
-
-
-.lecture-title-text {
+.lectureList-info-bar {
     font-size: 14px;
     color: #3b5e96;
+    font-size: 14px;
     font-weight: bold;
-    margin: 0;
 }
 
-.lecture-container {
+.lecture-table {
     width: 100%;
-    min-height: 400px;
-    overflow-y: auto;
-    max-height: 400px;
-}
-
-
-.list {
-    width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     font-size: 11px;
     text-align: center;
-    border: 1px solid #ccc;
 }
 
-.list thead th {
+
+.lecture-table thead th {
+    height: 30px;
     padding: 6px 2px;
     border: 1px solid #c0c0c0;
     background-color: #aacc67;
     font-weight: bold;
+    font-size: 0.85em;
     white-space: nowrap;
     vertical-align: middle;
     color: #333;
 }
 
 
-.list tbody td {
-    padding: 4px 5px;
+.lecture-table tbody td {
+    padding: 2px 4px;
     border: 1px solid #d3d3d3;
-    background-color: #f8fcf4;
+    background-color: #e7f2d4;
     vertical-align: middle;
     color: #444;
+
+    overflow: hidden;
 }
 
-.list tbody td.text-left {
+.lecture-table tbody td.text-left {
     text-align: left;
     padding-left: 8px;
 }
@@ -62,4 +62,23 @@
     cursor: pointer;
 }
 
+
+
+.lecture-table .col-cart         { width: 12%; }
+.lecture-table .col-no           { width: 3%; }
+.lecture-table .col-name         { width: 20%; }
+.lecture-table .col-code         { width: 7%; }
+.lecture-table .col-class        { width: 4%; }
+.lecture-table .col-type         { width: 6%; }
+.lecture-table .col-credit       { width: 3%; }
+.lecture-table .col-time         { width: 3%; }
+.lecture-table .col-person       { width: 5%; }
+.lecture-table .col-limit        { width: 5%; }
+.lecture-table .col-prof         { width: 6%; }
+.lecture-table .col-eval         { width: 6%; }
+.lecture-table .col-week         { width: 6%; }
+.lecture-table .col-rate         { width: 7%; }
+.lecture-table .col-desc         { width: 12%; }
+.lecture-table .col-schedule     { width: 10%; }
+.lecture-table .col-competency   { width: 6%; }
 
