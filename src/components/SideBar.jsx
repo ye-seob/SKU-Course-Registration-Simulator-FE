@@ -55,7 +55,7 @@ const SideBar = () => {
 
                     <CustomDropdown
                         options={['소프트웨어학과', '전자컴퓨터공학과']}
-                        placeholder="---- 타학과 선택 --"
+                        placeholder="-- 타학과 선택 --"
                     />
 
 

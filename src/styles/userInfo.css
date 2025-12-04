@@ -1,12 +1,12 @@
 .user-info-container {
     background-color: #f8fcf4;
-    width: 180px;
+    width: 160px;
     overflow: hidden;
 }
 
 
 .user-info-header {
-    background-color: #c5de96;
+    background-color: #bbd788;
     padding: 7px 10px;
     height: 15px;
     display: flex;
@@ -19,20 +19,20 @@
 }
 
 .user-title {
-    font-size: 0.9em;
+    font-size: 0.85em;
     font-weight: 600;
     color: white;
     margin-top: 10px;
 }
 
 .user-details-list {
-    padding: 15px;
+    padding: 10px;
     line-height: 1.2;
 }
 
 .detail-item {
     display: flex;
-    font-size: 0.95em;
+    font-size: 0.8em;
     color: black;
 }
 

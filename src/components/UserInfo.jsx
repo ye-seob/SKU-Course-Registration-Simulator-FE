@@ -27,7 +27,7 @@ const UserInfo = () => {
                 {infoItems.map((item, index) => (
                     <div className="detail-item" key={index}>
                         <span className="detail-label">{item.label} :</span>
-                        <span className="detail-value">{item.value}</span>
+                        <span className="detail-value">{item.value} </span>
                     </div>
                 ))}
             </div>

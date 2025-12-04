@@ -1,14 +1,11 @@
 .side-bar-container {
-    width: 180px;
+    width: var(--sidebar-width);
     box-sizing: border-box;
     background-color: #f8fcf4;
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
-
-
 }
-
 
 .logo-area {
     width: 100%;
@@ -21,7 +18,7 @@
 }
 
 .logo-image {
-    width: 180px;
+    width: 100%;
     height: auto;
 }
 
@@ -32,43 +29,36 @@
 }
 
 .button-section{
-    width: 180px;
+    width: var(--sidebar-width);
 }
 
-
-.section-header {
-    width: 180px;
-    background-color: #c5de96;
+.section-header {/
+    width: var(--sidebar-width);
+    background-color: #bbd788;
     padding: 7px 10px;
     height: 15px;
     display: flex;
     align-items: center;
-
 }
 
 .plus-icon {
     margin-right: 8px;
     font-size: 7px;
-
 }
 
 .section-title {
     font-size: 0.8em;
     font-weight: 700;
-    width: 180px;
+    width: var(--sidebar-width);
     color: white;
 }
 
 .button-group {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
     margin: 10px 0px;
-    padding: 0 10px;
 }
-
-
-
-
 

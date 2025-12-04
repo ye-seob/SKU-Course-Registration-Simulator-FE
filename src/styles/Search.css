@@ -1,5 +1,5 @@
 .search-container {
-    padding: 10px 10px;
+    padding: 10px;
 }
 
 .search-label {
@@ -12,32 +12,33 @@
 
 .search-input-group {
     display: flex;
+
+    width: 135px;
+    margin-left: -10px;
     align-items: center;
     gap: 5px;
 }
 
 .search-input {
-    flex-grow: 1;
-    width: 10px;
+    width: 100px;
     height: 20px;
     border-top: 1px solid black;
     border-left: 1px solid black;
-
     box-sizing: border-box;
     padding: 0 5px;
     font-size: 0.9em;
 }
 
 .search-button {
-    width: 40px;
-    height: 30px;
-    font-size: 0.9em;
+    width: 600px;
+    height: 25px;
+    font-size: 0.8em;
     font-weight: 500;
     color: #333;
     border-radius: 3px;
-
     background-color: #f8fcf4;
     border: 1px solid #999999;
     cursor: pointer;
     box-sizing: border-box;
+    white-space: nowrap;
 }
