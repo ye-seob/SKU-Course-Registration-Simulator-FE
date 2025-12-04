@@ -1,9 +1,9 @@
 import React from 'react';
 import SideBar from "../components/SideBar.jsx";
 import "../styles/home.css";
-import InfoNotice from "../components/InfoNotice.jsx";
 import WarningNotice from "../components/WarningNotice.jsx";
 import TwoSectionLayout from "../components/Layout";
+import LectureList from "../components/LectureList.jsx";
 
 const Home = () => {
 
@@ -11,7 +11,7 @@ const Home = () => {
         <div className="home-container">
             <SideBar/>
             <TwoSectionLayout
-            top={<InfoNotice/>}
+            top={<LectureList/>}
             bottom={<WarningNotice/>}
             />
         </div>
