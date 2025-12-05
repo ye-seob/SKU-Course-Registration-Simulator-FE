@@ -1,9 +1,9 @@
 import React from 'react';
 import SideBar from "../components/SideBar.jsx";
 import "../styles/home.css";
-import WarningNotice from "../components/WarningNotice.jsx";
 import TwoSectionLayout from "../components/Layout";
 import LectureList from "../components/LectureList.jsx";
+import CartList from "../components/CartList.jsx";
 
 const Home = () => {
 
@@ -12,7 +12,7 @@ const Home = () => {
             <SideBar/>
             <TwoSectionLayout
             top={<LectureList/>}
-            bottom={<WarningNotice/>}
+            bottom={<CartList/>}
             />
         </div>
     );

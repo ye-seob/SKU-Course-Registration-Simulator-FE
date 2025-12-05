@@ -1,8 +1,13 @@
+:root {
+    --sidebar-width: 150px;
+}
+
 .home-container {
     display: flex;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
 .side-bar-container {
@@ -13,11 +18,9 @@
 }
 
 .main-content-area {
-    margin-left: 180px;
-    flex-grow: 1;
+
+    margin-left: 135px;
     overflow-y: auto;
     padding: 10px;
     background-color: #fff;
 }
-
-
