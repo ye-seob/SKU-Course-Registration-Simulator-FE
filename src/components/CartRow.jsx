@@ -1,14 +1,23 @@
 import React from "react";
+import {useCart} from "../hooks/useCart.js";
 
-const CartRow = ({ item }) => {
+const CartRow = ({item}) => {
+    const { deleteCartMutation} = useCart();
+
+    const handleDelete = () => {
+        if (window.confirm("삭제하시겠습니까?")) {
+            deleteCartMutation.mutate(item.lectureId);
+        }
+    };
+
     return (
         <tr>
             <td>
-                <button className="delete-btn">장바구니삭제</button>
+                <button className="delete-btn" onClick={handleDelete}>장바구니삭제</button>
             </td>
-            <td className="text-left">{item.name}</td>
-            <td>{item.courseId}</td>
-            <td>{item.section}</td>
+            <td className="text-left">{item.lectureName}</td>
+            <td>{item.lectureCode}</td>
+            <td>{item.classNumber}</td>
             <td>{item.type}</td>
             <td>{item.credit}</td>
             <td>{item.time}</td>
@@ -20,4 +29,4 @@ const CartRow = ({ item }) => {
     );
 };
 
-export default  CartRow
+export default CartRow
