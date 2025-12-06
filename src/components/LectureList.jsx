@@ -2,15 +2,22 @@ import React from "react";
 import "../styles/LectureList.css";
 import Lecture from "./Lecture.jsx";
 import {useLecture} from "../hooks/useLecture.js";
+import {useSearch} from "../context/SearchContext.jsx";
 
 const LectureList = () => {
-    const { lectureQuery } = useLecture();
+    const { currentSearchTerm } = useSearch();
+    const { lectureQuery } = useLecture(currentSearchTerm);
+
     const lectureData = lectureQuery.data || [];
+
 
     return (
         <div className="lecture-wrapper">
             <div className="lectureList-info-bar">
-                <span className="lecture-title-text">[자학과 개설강좌]</span>
+                <span className="lecture-title-text">
+                    [자학과 개설강좌]
+
+                </span>
             </div>
 
             <div className="lecture-table-container">
@@ -57,9 +64,19 @@ const LectureList = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {lectureData.map((lecture) => (
-                        <Lecture key={lecture.id} lecture={lecture}/>
-                    ))}
+
+                    {lectureData.length > 0 ? (
+                        lectureData.map((lecture) => (
+                            <Lecture key={lecture.id} lecture={lecture} />
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan={17}>
+                                데이터가 존재하지 않습니다.
+                            </td>
+                        </tr>
+                    )}
+
                     </tbody>
                 </table>
             </div>
