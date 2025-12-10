@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import UserInfo from './UserInfo.jsx';
 import CustomButton from './CustomButton.jsx';
 import CustomDropdown from './CustomDropdown.jsx';
@@ -14,6 +14,8 @@ const SideBar = () => {
     const { user } = useUserStore();
     const { setMajor , setType} = useSearchStore();
     const major = user?.major;
+    const [visibleDropdown, setVisibleDropdown] = useState('type');
+
     const doubleMajor = "경영학과";
     const minor = "전자컴퓨터공학과";
 
@@ -36,36 +38,59 @@ const SideBar = () => {
                 </div>
 
                 <div className="button-group">
-                    <CustomButton text={"자학과 교과목"} onClick={()=>{
-                        setMajor(major)
-                        setType("")
-                    }}/>
-
-                    <CustomButton text={"공통 교양"} onClick={()=>{
-                        setMajor("")
-                        setType("교선")
-                    }}/>
-
-                    <CustomDropdown
-                        options={TYPE}
-                        placeholder="---강좌 선택 ----"
-                        onChange={(value)=>{
-                            setMajor("");
-                            setType(value);}
-                    }
+                    <CustomButton
+                        text={"자학과 교과목"}
+                        onClick={()=>{
+                            setVisibleDropdown('type');
+                            setMajor(major);
+                            setType("");
+                        }}
                     />
+
+                    <CustomButton
+                        text={"공통 교양"}
+                        onClick={()=>{
+                            setVisibleDropdown('type');
+                            setMajor("");
+                            setType("교선");
+                        }}
+                    />
+
+                    {visibleDropdown === 'type' &&
+                        <CustomDropdown
+                            options={TYPE}
+                            placeholder="---강좌 선택 ----"
+                            onChange={(value)=>{
+                                setMajor("");
+                                setType(value);
+                            }}
+                        />
+                    }
+
+
 
                     <CustomButton text={"장바구니"} onClick={() => alert(`장바구니 클릭`)}/>
 
-                    <CustomButton text={"타학과 교과목"} onClick={()=>{}}/>
-                    <CustomDropdown
-                        options={MAJOR}
-                        placeholder="-- 타학과 선택 --"
-                        onChange={(value)=>{
-                            setMajor(value);
-                            setType("")}
-                    }
+
+
+                    <CustomButton
+                        text={"타학과 교과목"}
+                        onClick={()=>{
+                            setVisibleDropdown('major');
+                        }}
                     />
+
+                    {visibleDropdown === 'major' &&
+                        <CustomDropdown
+                            options={MAJOR}
+                            placeholder="-- 타학과 선택 --"
+                            onChange={(value)=>{
+                                setMajor(value);
+                                setType("");
+                            }}
+                        />
+                    }
+
 
                     <CustomButton text={"복수전공"} onClick={() =>{
                         setMajor(doubleMajor);
