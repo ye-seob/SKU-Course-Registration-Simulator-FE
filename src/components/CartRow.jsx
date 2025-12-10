@@ -19,8 +19,8 @@ const CartRow = ({item}) => {
             <td>{item.lectureCode}</td>
             <td>{item.classNumber}</td>
             <td>{item.type}</td>
-            <td>{item.credit}</td>
-            <td>{item.time}</td>
+            <td>{item.credit.toFixed(2)}</td>
+            <td>{item.time.toFixed(2)}</td>
             <td>{item.professor}</td>
             <td className="text-left">{item.desc}</td>
             <td className="text-left">{item.schedule}</td>
