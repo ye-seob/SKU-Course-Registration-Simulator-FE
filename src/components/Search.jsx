@@ -1,10 +1,11 @@
 import React from 'react';
 import '../styles/Search.css';
 import {useSearch} from '../context/SearchContext.jsx';
+import useSearchStore from "../store/searchStore.js";
 
 const Search = () => {
     const { searchKeyword, setSearchKeyword, setCurrentSearchTerm } = useSearch();
-
+    const {setMajor , setType }  = useSearchStore();
 
     const handleInputChange = (e) => {
         setSearchKeyword(e.target.value);
@@ -12,6 +13,8 @@ const Search = () => {
 
 
     const handleSearchClick = () => {
+        setMajor("");
+        setType("");
         setCurrentSearchTerm(searchKeyword);
     };
 
@@ -30,7 +33,6 @@ const Search = () => {
             <div className="search-input-group">
                 <input
                     type="text"
-                    placeholder="교과목명 입력"
                     className="search-input"
                     value={searchKeyword}
                     onChange={handleInputChange}
