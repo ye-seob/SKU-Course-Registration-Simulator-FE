@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import '../styles/signupPage.css';
 import {MAJOR} from "../utils/constant.js";
+import {useSignup} from "../hooks/useSignup.js";
 
 const logoUrl = "https://s.skuniv.ac.kr/course/img/sugang/logo2.gif";
 
@@ -15,19 +16,19 @@ const Signup = () => {
         grade: "1"
     });
 
+    const signupMutation = useSignup();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    };
+        signupMutation.mutate(formData);
+    }
 
-    return (
+        return (
         <div className="signup-container">
             <div className="signup-card">
                 <header className="signup-header">
