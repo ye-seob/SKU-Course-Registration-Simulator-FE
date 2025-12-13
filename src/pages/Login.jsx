@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import '../styles/login.css';
 import {useLogin} from "../hooks/useLogin.js";
+import {useNavigate} from "react-router-dom";
 
 const logoUrl = "https://s.skuniv.ac.kr/course/img/sugang/logo2.gif";
 const loginBtnUrl = "https://s.skuniv.ac.kr/course/img/sugang/login2.gif"
@@ -10,6 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const loginMutation = useLogin();
+    const navigate = useNavigate();
 
     const handleLogin = () => {
         loginMutation.mutate(
@@ -65,8 +67,15 @@ const Login = () => {
 
                 </div>
 
-                {/* [학번찾기] */}
-                <div className="find-id-link">[학번찾기]</div>
+
+                <div className="link">
+                    <div className="find-id-link">[학번찾기]</div>
+                    <div className="signup-link"
+                         onClick={() => navigate('/signup')}
+                         style={{ cursor: 'pointer' }}
+                        >[회원가입]</div>
+                </div>
+
 
                 {/* 박스 내부 빨간색 경고 문구 */}
                 <div className="internal-warning">

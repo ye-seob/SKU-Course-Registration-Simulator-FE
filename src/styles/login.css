@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 70px;
+    margin-bottom: 200px;
 }
 
 /* ========================================
@@ -44,7 +44,7 @@
 */
 .login-box {
     width: 75%;
-    border: 5.5px solid #3b5e96; /* 두꺼운 파란색 테두리 */
+    border: 5px solid #3b5e96; /* 두꺼운 파란색 테두리 */
     padding: 30px 0; /* 박스 내부 상하 여백 */
     display: flex;
     flex-direction: column;
@@ -93,16 +93,21 @@
 }
 
 
-.find-id-link {
+
+.link{
     font-size: 13px;
     font-weight: bold;
     color: #000;
     cursor: pointer;
     text-decoration: none;
-    width: 320px;
+    width: 150px;
     text-align: right;
     margin-bottom: 30px;
+    margin-left: 380px;
+    display: flex;
+   justify-content: space-between;
 }
+
 
 /* ========================================
   경고 문구 스타일
