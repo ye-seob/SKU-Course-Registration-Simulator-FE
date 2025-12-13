@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import '../styles/customDropdown.css';
 
-const CustomDropdown = ({ options, placeholder }) => {
+const CustomDropdown = ({ options, placeholder, onChange }) => {
     const [selected, setSelected] = useState('');
 
     const handleChange = (e) => {
         setSelected(e.target.value);
+        onChange && onChange(e.target.value);
     };
 
     return (
@@ -14,9 +15,8 @@ const CustomDropdown = ({ options, placeholder }) => {
             value={selected}
             onChange={handleChange}
         >
-            <option value="">
-                {placeholder}
-            </option>
+            <option value="">{placeholder}</option>
+
             {options.map(option => (
                 <option key={option} value={option}>
                     {option}

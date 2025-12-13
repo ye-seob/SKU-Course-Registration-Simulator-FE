@@ -1,5 +1,6 @@
 .lecture-wrapper {
     width: 1200px;
+    height: 350px;
     padding: 10px;
     box-sizing: border-box;
 }
@@ -15,6 +16,7 @@
 .lecture-table-container {
     width: 100%;
     overflow-y: auto;
+    mix-height: 300px;
     max-height: 300px;
 
 
@@ -22,7 +24,7 @@
 }
 
 .lecture-table {
-
+    width: 1180px;
     table-layout: fixed;
 
     border-collapse: collapse;

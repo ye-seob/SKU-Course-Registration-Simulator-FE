@@ -59,7 +59,7 @@ const CartList = () => {
                     </thead>
 
                     <tbody>
-                    {/* 1. 실제 데이터 렌더링 */}
+
                     {cartData.map((item) => (
                         <CartRow
                             key={`${item.lectureId}-${item.addedAt}`}
@@ -67,10 +67,6 @@ const CartList = () => {
                         />
                     ))}
 
-                    {/* 2. 빈 행 렌더링 */}
-                    {/* 데이터가 없어도, height: 35px가 CSS에 먹혀있으므로
-                           데이터가 있을 때와 똑같은 높이의 빈 줄이 생성됩니다.
-                        */}
                     {Array.from({ length: Math.max(0, emptyRows) }).map((_, i) => (
                         <tr key={`empty-${i}`} className="empty-row">
                             {Array.from({ length: 11 }).map((__, idx) => (
