@@ -1,25 +1,31 @@
-// Home.jsx
-
 import React from 'react';
 import SideBar from "../components/SideBar.jsx";
 import "../styles/home.css";
 import TwoSectionLayout from "../components/Layout";
 import LectureList from "../components/LectureList.jsx";
 import CartList from "../components/CartList.jsx";
-import {SearchProvider} from "../context/SearchContext.jsx";
+import InfoNotice from "../components/InfoNotice.jsx";
+import WarningNotice from "../components/WarningNotice.jsx";
+
+import useViewStore from "../store/viewStore.js";
 
 const Home = () => {
+    const mode = useViewStore((state) => state.mode);
+
+    const isHome = mode === 'HOME';
+
+    const topComponent = isHome ? <InfoNotice /> : <LectureList />;
+    const bottomComponent = isHome ? <WarningNotice /> : <CartList />;
+
     return (
-        <SearchProvider>
             <div className="home-container">
-                <SideBar/>
+                <SideBar />
                 <TwoSectionLayout
-                    top={<LectureList/>}
-                    bottom={<CartList/>}
+                    top={topComponent}
+                    bottom={bottomComponent}
                 />
             </div>
-        </SearchProvider>
-    );
+    )
 };
 
 export default Home;

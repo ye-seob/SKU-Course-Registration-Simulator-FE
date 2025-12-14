@@ -7,8 +7,8 @@ const App = () => {
     return (
         <div className="App">
             <ToastContainer
-                position="top-right"   // 알림 위치
-                autoClose={3000}       // 자동 닫힘 시간 (ms)
+                position="top-right"
+                autoClose={3000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick

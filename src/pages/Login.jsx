@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../styles/login.css';
-import {useLogin} from "../hooks/useLogin.js";
+import {login} from "../api/login.js";
 import {useNavigate} from "react-router-dom";
 
 const logoUrl = "https://s.skuniv.ac.kr/course/img/sugang/logo2.gif";
@@ -10,21 +10,15 @@ const Login = () => {
     const [studentId, setStudentId] = useState("");
     const [password, setPassword] = useState("");
 
-    const loginMutation = useLogin();
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        loginMutation.mutate(
-            { studentId, password },
-            {
-                onSuccess: (res) => {
-
-                },
-                onError: (e) => {
-                    alert(JSON.stringify(e.toString(), null, 2));
-                }
-            }
-        );
+    const handleLogin = async () => {
+        try {
+            await login({ studentId, password });
+            navigate('/'); // 컴포넌트에서 이동
+        } catch (e) {
+            alert(e.response?.data?.message || "로그인 중 오류가 발생했습니다.");
+        }
     };
     return (
         // 전체를 감싸는 컨테이너

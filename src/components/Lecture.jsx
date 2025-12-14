@@ -1,21 +1,43 @@
 import React from 'react';
-import {useCart} from "../hooks/useCart.js";
+import useViewStore from "../store/viewStore.js";
+import {addCart} from "../api/cart.js";
+import useCartStore from "../store/cartStore.js";
 
+const Lecture = ({ lecture }) => {
+    const { mode } = useViewStore();
 
-const Lecture = ({lecture}) => {
-    const { addCartMutation } = useCart();
+    const {setCartList} = useCartStore();
 
-    const handleAdd = () => {
-        if (window.confirm("선택한 과목을 담으시겠습니까?")) {
-            addCartMutation.mutate(lecture.id);
+    const isCartMode = mode === "CART";
+    const isEnrollMode = mode === "ENROLL";
+
+    const handleClick = async () => {
+        if (isCartMode) {
+            if (window.confirm("선택한 과목을 담으시겠습니까?")) {
+                try {
+                    await addCart(lecture.id, setCartList);
+                } catch (err) {
+                    console.log(err)
+                    alert("장바구니 추가 실패");
+                }
+            }
+        }
+
+        if (isEnrollMode) {
+            console.log("수강신청:", lecture.id);
         }
     };
+
+
 
     return (
         <tr className="course-row">
             <td>
-                <button className="cart-btn" onClick={handleAdd}>장바구니담기</button>
+                <button className="cart-btn" onClick={handleClick}>
+                    {isCartMode ? "장바구니담기" : "신청"}
+                </button>
             </td>
+
             <td>{lecture.id}</td>
             <td className="text-left">{lecture.lectureName}</td>
             <td>{lecture.lectureCode}</td>
