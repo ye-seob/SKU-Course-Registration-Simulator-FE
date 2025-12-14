@@ -13,7 +13,7 @@ const useUserStore = create((set) => ({
         set({ user: userData });
     },
     clearUser: () => {
-        localStorage.removeItem('user');  // localStorage 제거
+        localStorage.removeItem('user');
         localStorage.removeItem('accessToken')
         set({ user: null });
     },
