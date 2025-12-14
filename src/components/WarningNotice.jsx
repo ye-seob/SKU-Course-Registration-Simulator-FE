@@ -1,19 +1,30 @@
 import React from "react";
-import "../styles/WarningNotice.css"
+import "../styles/WarningNotice.css";
+import useViewStore from "../store/viewStore.js";
 
-const WarningNotice = () => (
-    <div className="course-warning-wrapper">
-        <div className="warning-title-box">
-            <p>[대체 재수강 유의사항]</p>
+const WarningNotice = () => {
+    const { setMode } = useViewStore();
+
+    const handleGoToCart = () => {
+        setMode("CART");
+    };
+
+    return (
+        <div className="course-warning-wrapper">
+            <div className="warning-title-box">
+                <p>[장바구니 하러가기]</p>
+            </div>
+
+            <div className="warningInfo-text">
+                <button
+                    className="go-cart-btn"
+                    onClick={handleGoToCart}
+                >
+                    이동
+                </button>
+            </div>
         </div>
-        <div className="warningInfo-text">
-            <p>예시문장 예시문장 예시문장 예시문장 예시문장 예시문장 예시문장 </p>
-            <br/>
-            <p>예시문장 예시문장 예시문장 예시문장 예시문장 예시문장 예시문장 </p>
-            <br/>
-            <p>예시문장 예시문장 예시문장</p>
-        </div>
-    </div>
-);
+    );
+};
 
 export default WarningNotice;

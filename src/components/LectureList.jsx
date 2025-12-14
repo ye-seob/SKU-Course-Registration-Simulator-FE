@@ -1,82 +1,77 @@
 import React from "react";
 import "../styles/LectureList.css";
 import Lecture from "./Lecture.jsx";
-import {useLecture} from "../hooks/useLecture.js";
-import {useSearch} from "../context/SearchContext.jsx";
+import useViewStore from "../store/viewStore.js";
+import useLectureStore from "../store/lectureStore.js";
 
 const LectureList = () => {
-    const { currentSearchTerm } = useSearch();
-    const { lectureQuery } = useLecture(currentSearchTerm);
+    const { mode } = useViewStore();
+    const { lectures } = useLectureStore();
 
-    const lectureData = lectureQuery.data || [];
+    const isCart = mode === "CART";
 
+    const lectureData = lectures;
 
     return (
         <div className="lecture-wrapper">
             <div className="lectureList-info-bar">
-                <span className="lecture-title-text">
-                    [자학과 개설강좌]
-
-                </span>
+                <span className="lecture-title-text">[개설강좌]</span>
             </div>
 
             <div className="lecture-table-container">
                 <table className="lecture-table">
                     <colgroup>
-                        <col style={{ width: "110px" }} />  {/* 장바구니담기 */}
-                        <col style={{ width: "25px" }} />  {/* No */}
-                        <col style={{ width: "180px" }} /> {/* 교과목명 */}
-                        <col style={{ width: "70px" }} />  {/* 학수번호 */}
-                        <col style={{ width: "40px" }} />  {/* 분반 */}
-                        <col style={{ width: "50px" }} />  {/* 이수구분 */}
-                        <col style={{ width: "40px" }} />  {/* 학점 */}
-                        <col style={{ width: "40px" }} />  {/* 시간 */}
-                        <col style={{ width: "50px" }} />  {/* 수강인원 */}
-                        <col style={{ width: "50px" }} />  {/* 제한인원 */}
-                        <col style={{ width: "70px" }} />  {/* 담당교수 */}
-                        <col style={{ width: "70px" }} />  {/* 성적평가 */}
-                        <col style={{ width: "50px" }} />  {/* 학기주차 */}
-                        <col style={{ width: "60px" }} />  {/* 강의평가 */}
-                        <col style={{ width: "100px" }} /> {/* 강의실명 */}
-                        <col style={{ width: "100px" }} /> {/* 강의시간 */}
-                        <col style={{ width: "60px" }} />  {/* 역량구분 */}
+                        <col style={{ width: "110px" }} />
+                        <col style={{ width: "25px" }} />
+                        <col style={{ width: "180px" }} />
+                        <col style={{ width: "70px" }} />
+                        <col style={{ width: "40px" }} />
+                        <col style={{ width: "50px" }} />
+                        <col style={{ width: "40px" }} />
+                        <col style={{ width: "40px" }} />
+                        <col style={{ width: "50px" }} />
+                        <col style={{ width: "50px" }} />
+                        <col style={{ width: "70px" }} />
+                        <col style={{ width: "70px" }} />
+                        <col style={{ width: "50px" }} />
+                        <col style={{ width: "60px" }} />
+                        <col style={{ width: "100px" }} />
+                        <col style={{ width: "100px" }} />
+                        <col style={{ width: "60px" }} />
                     </colgroup>
 
                     <thead>
                     <tr>
-                        <th className="col-cart">장바구니담기</th>
-                        <th className="col-no">No</th>
-                        <th className="col-name">교과목명</th>
-                        <th className="col-code">학수번호</th>
-                        <th className="col-class">분반</th>
-                        <th className="col-type">이수<br/>구분</th>
-                        <th className="col-credit">학<br/>점</th>
-                        <th className="col-time">시<br/>간</th>
-                        <th className="col-person">수강<br/>인원</th>
-                        <th className="col-limit">제한<br/>인원</th>
-                        <th className="col-prof">담당교수</th>
-                        <th className="col-eval">성적평가방법</th>
-                        <th className="col-week">학기주차</th>
-                        <th className="col-rate">강의평가평점<br/>(5점만점)</th>
-                        <th className="col-desc">강의실명</th>
-                        <th className="col-schedule">강의시간<br/>(주)주간,(야)야간</th>
-                        <th className="col-competency">역량구분</th>
+                        <th className="col-cart">{isCart ? "장바구니담기" : "신청"}</th>
+                        <th>No</th>
+                        <th>교과목명</th>
+                        <th>학수번호</th>
+                        <th>분반</th>
+                        <th>이수<br />구분</th>
+                        <th>학<br />점</th>
+                        <th>시<br />간</th>
+                        <th>수강<br />인원</th>
+                        <th>제한<br />인원</th>
+                        <th>담당교수</th>
+                        <th>성적평가방법</th>
+                        <th>학기주차</th>
+                        <th>강의평가평점</th>
+                        <th>강의실명</th>
+                        <th>강의시간</th>
+                        <th>역량구분</th>
                     </tr>
                     </thead>
-                    <tbody>
 
+                    <tbody>
                     {lectureData.length > 0 ? (
                         lectureData.map((lecture) => (
-                            <Lecture key={lecture.id} lecture={lecture} />
+                            <Lecture key={lecture.id} lecture={lecture} mode={mode} />
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={17}>
-                                데이터가 존재하지 않습니다.
-                            </td>
+                            <td colSpan={17}>데이터가 존재하지 않습니다.</td>
                         </tr>
                     )}
-
                     </tbody>
                 </table>
             </div>

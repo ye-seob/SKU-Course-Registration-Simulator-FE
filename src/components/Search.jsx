@@ -1,21 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/Search.css';
-import {useSearch} from '../context/SearchContext.jsx';
 import useSearchStore from "../store/searchStore.js";
+import useLectureStore from "../store/lectureStore.js";
+import {getLectures} from "../api/getLectures.js";
 
 const Search = () => {
-    const { searchKeyword, setSearchKeyword, setCurrentSearchTerm } = useSearch();
-    const {setMajor , setType }  = useSearchStore();
+    const [searchKeyword, setSearchKeyword] = useState("");
+    const { setMajor, setType, setKeyword } = useSearchStore();
+    const { setLectures } = useLectureStore();
 
     const handleInputChange = (e) => {
         setSearchKeyword(e.target.value);
     };
 
-
-    const handleSearchClick = () => {
+    const handleSearchClick = async () => {
         setMajor("");
         setType("");
-        setCurrentSearchTerm(searchKeyword);
+        setKeyword(searchKeyword);
+
+        try {
+            await getLectures(searchKeyword, "", "", setLectures);
+        } catch (err) {
+            console.error("검색 실패", err);
+        }
     };
 
     const handleKeyPress = (e) => {
@@ -24,12 +31,9 @@ const Search = () => {
         }
     };
 
-
     return (
         <div className="search-container">
-            <span className="search-label">
-                교과목명으로 검색
-            </span>
+            <span className="search-label">교과목명으로 검색</span>
             <div className="search-input-group">
                 <input
                     type="text"
