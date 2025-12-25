@@ -7,12 +7,12 @@ const useSearchStore = create(
             major: '',
             type: '',
             isCart: false,
-            keyword: '', // 추가
+            keyword: '',
 
             setMajor: (major) => set({ major }),
             setType: (type) => set({ type }),
             setIsCart: (isCart) => set({ isCart }),
-            setKeyword: (keyword) => set({ keyword }), // 추가
+            setKeyword: (keyword) => set({ keyword }),
         }),
         {
             name: 'search-storage', // 로컬스토리지 key

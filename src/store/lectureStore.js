@@ -2,7 +2,10 @@ import {create} from 'zustand';
 
 const useLectureStore = create((set) => ({
     lectures: [],
-    setLectures: (data) => set({ lectures: data }),
+    setLectures: (data) => {
+        console.log("setLectures 호출:", data);
+        set({ lectures: data });
+    }
 }));
 
 export default useLectureStore;
