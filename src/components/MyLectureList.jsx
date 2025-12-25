@@ -1,13 +1,13 @@
 import React, {useEffect} from "react";
 import "../styles/CartList.css";
-import CartRow from "./CartRow.jsx";
+import MyLectureRow from "./MyLectureRow.jsx";
 import useViewStore from "../store/viewStore.js";
 import useCartStore from "../store/cartStore.js";
 import {getCart} from "../api/cart.js";
 import {getEnrollments} from "../api/enrollment.js";
 
 
-const CartList = () => {
+const MyLectureList = () => {
     const { mode } = useViewStore();
     const { cartList, setCartList } = useCartStore();
 
@@ -96,7 +96,7 @@ const CartList = () => {
 
                     <tbody>
                     {cartList.map((item) => (
-                        <CartRow key={`${item.lectureId}-${item.addedAt}`} item={item} mode={mode} />
+                        <MyLectureRow key={`${item.lectureId}-${item.addedAt}`} item={item} mode={mode} />
                     ))}
 
                     {Array.from({ length: Math.max(0, emptyRows) }).map((_, i) => (
@@ -113,4 +113,4 @@ const CartList = () => {
     );
 };
 
-export default CartList;
+export default MyLectureList;

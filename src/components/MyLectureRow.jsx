@@ -4,7 +4,7 @@ import {cancelEnrollment, getEnrollments} from "../api/enrollment.js";
 import useCartStore from "../store/cartStore.js";
 import {deleteCart, getCart} from "../api/cart.js";
 
-const CartRow = ({ item }) => {
+const MyLectureRow = ({ item }) => {
     const { mode } = useViewStore();
     const {  setCartList } = useCartStore();
     const isCartMode = mode === "CART";
@@ -28,7 +28,7 @@ const CartRow = ({ item }) => {
                     const enrollments = await getEnrollments();
                     setCartList(enrollments);
                 }catch (err){
-                    console.error("[CartRow] 수강신청 취소 실패", err);
+                    console.error("[MyLectureRow] 수강신청 취소 실패", err);
                     alert("수강신청 취소에 실패했습니다.");
                 }
             }
@@ -57,4 +57,4 @@ const CartRow = ({ item }) => {
     );
 };
 
-export default CartRow;
+export default MyLectureRow;

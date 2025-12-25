@@ -4,7 +4,7 @@ import {addCart, getCart} from "../api/cart.js";
 import {enrollLecture, getEnrollments} from "../api/enrollment.js";
 import useCartStore from "../store/cartStore.js";
 
-const Lecture = ({ lecture }) => {
+const LectureRow = ({ lecture }) => {
     const { mode } = useViewStore();
 
     const {setCartList} = useCartStore();
@@ -70,4 +70,4 @@ const Lecture = ({ lecture }) => {
     );
 };
 
-export default Lecture;
+export default LectureRow;

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import "../styles/LectureList.css";
-import Lecture from "./Lecture.jsx";
+import LectureRow from "./LectureRow.jsx";
 import useViewStore from "../store/viewStore.js";
 import useLectureStore from "../store/lectureStore.js";
 
@@ -78,7 +78,7 @@ const LectureList = () => {
                     <tbody>
                     {lectureData.length > 0 ? (
                         lectureData.map((lecture) => (
-                            <Lecture key={lecture.id} lecture={lecture} mode={mode} />
+                            <LectureRow key={lecture.id} lecture={lecture} mode={mode} />
                         ))
                     ) : (
                         <tr>
