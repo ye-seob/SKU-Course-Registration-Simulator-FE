@@ -1,16 +1,29 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../styles/LectureList.css";
 import Lecture from "./Lecture.jsx";
 import useViewStore from "../store/viewStore.js";
 import useLectureStore from "../store/lectureStore.js";
 
+import {getLectures} from "../api/getLectures.js";
+import useSearchStore from "../store/searchStore.js";
+
 const LectureList = () => {
     const { mode } = useViewStore();
-    const { lectures } = useLectureStore();
+    const { lectures,setLectures } = useLectureStore();
 
     const isCart = mode === "CART";
 
     const lectureData = lectures;
+    const { major, type, keyword } = useSearchStore();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await getLectures(keyword, major, type ,setLectures);
+
+        };
+        fetchData();
+    }, [keyword, major, type ,setLectures]);
+
 
     return (
         <div className="lecture-wrapper">

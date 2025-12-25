@@ -4,37 +4,8 @@ import CartRow from "./CartRow.jsx";
 import useViewStore from "../store/viewStore.js";
 import useCartStore from "../store/cartStore.js";
 import {getCart} from "../api/cart.js";
+import {getEnrollments} from "../api/enrollment.js";
 
-const dummyEnrollList = [
-    {
-        lectureId: 1,
-        lectureName: "자료구조",
-        lectureCode: "CS101",
-        classNumber: "01",
-        type: "전필",
-        credit: 3,
-        time: 3,
-        professor: "홍길동",
-        desc: "자료구조 기초 강의",
-        schedule: "월 1-2",
-        note: "",
-        addedAt: Date.now(),
-    },
-    {
-        lectureId: 2,
-        lectureName: "운영체제",
-        lectureCode: "CS102",
-        classNumber: "01",
-        type: "전필",
-        credit: 3,
-        time: 3,
-        professor: "김철수",
-        desc: "운영체제 기초 강의",
-        schedule: "화 3-4",
-        note: "",
-        addedAt: Date.now(),
-    },
-];
 
 const CartList = () => {
     const { mode } = useViewStore();
@@ -47,9 +18,11 @@ const CartList = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (isCartMode) {
-                await getCart(setCartList);
+                const response = await getCart();
+                setCartList(response);
             } else {
-                setCartList(dummyEnrollList);
+               const response = await getEnrollments();
+               setCartList(response);
             }
         };
         fetchData();

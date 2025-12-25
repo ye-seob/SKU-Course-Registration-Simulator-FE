@@ -34,10 +34,13 @@ const SideBar = () => {
         setMajor(newMajor);
         setType(newType);
         setIsCart(cart);
-
+        let num = 0;
         try {
             if (cart) {
-                 await getCart(setLectures);
+                console.log(num++)
+                 const response = await getCart();
+                console.log(response)
+                 setLectures(response);
             } else {
 
                 await getLectures("", newMajor, newType, setLectures);

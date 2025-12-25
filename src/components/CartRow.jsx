@@ -1,24 +1,36 @@
 import React from "react";
 import useViewStore from "../store/viewStore.js";
+import {cancelEnrollment, getEnrollments} from "../api/enrollment.js";
+import useCartStore from "../store/cartStore.js";
+import {deleteCart, getCart} from "../api/cart.js";
 
 const CartRow = ({ item }) => {
     const { mode } = useViewStore();
-
+    const {  setCartList } = useCartStore();
     const isCartMode = mode === "CART";
     const isEnrollMode = mode === "ENROLL";
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (isCartMode) {
             if (window.confirm("장바구니에서 삭제하시겠습니까?")) {
-                // 🔥 장바구니 삭제 로직은 추후 zustand/cartStore나 API로 연결
-                console.log("장바구니 삭제:", item.lectureId);
+                await deleteCart(item.lectureId);
+
+                const carts = getCart();
+
+                setCartList(carts)
             }
         }
 
         if (isEnrollMode) {
             if (window.confirm("수강신청을 취소하시겠습니까?")) {
-                // 🔥 수강신청 취소 로직 연결
-                console.log("수강신청 취소:", item.lectureId);
+                try {
+                    await cancelEnrollment(item.lectureId);
+                    const enrollments = await getEnrollments();
+                    setCartList(enrollments);
+                }catch (err){
+                    console.error("[CartRow] 수강신청 취소 실패", err);
+                    alert("수강신청 취소에 실패했습니다.");
+                }
             }
         }
     };

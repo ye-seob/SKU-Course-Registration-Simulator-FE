@@ -1,6 +1,7 @@
 import React from 'react';
 import useViewStore from "../store/viewStore.js";
-import {addCart} from "../api/cart.js";
+import {addCart, getCart} from "../api/cart.js";
+import {enrollLecture, getEnrollments} from "../api/enrollment.js";
 import useCartStore from "../store/cartStore.js";
 
 const Lecture = ({ lecture }) => {
@@ -15,7 +16,9 @@ const Lecture = ({ lecture }) => {
         if (isCartMode) {
             if (window.confirm("선택한 과목을 담으시겠습니까?")) {
                 try {
-                    await addCart(lecture.id, setCartList);
+                    const response = await addCart(lecture.id);
+                    setCartList(response);
+                    setCartList( await  getCart());
                 } catch (err) {
                     console.log(err)
                     alert("장바구니 추가 실패");
@@ -23,8 +26,17 @@ const Lecture = ({ lecture }) => {
             }
         }
 
-        if (isEnrollMode) {
-            console.log("수강신청:", lecture.id);
+        if (isEnrollMode){
+            if(window.confirm("선택한 강의를 신청하시겠습니까?")){
+                try {
+                     await enrollLecture(lecture.id)
+
+                    const enrollments = await getEnrollments();
+                    setCartList(enrollments);
+                } catch (err) {
+                    console.log(err)
+                }
+            }
         }
     };
 
