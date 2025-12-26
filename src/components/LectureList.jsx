@@ -6,24 +6,75 @@ import useLectureStore from "../store/lectureStore.js";
 
 import {getLectures} from "../api/getLectures.js";
 import useSearchStore from "../store/searchStore.js";
+import {enrollLecture, getEnrollments} from "../api/enrollment.js";
+import {addCart, getCart} from "../api/cart.js";
+import useCartStore from "../store/cartStore.js";
+import useEnrollmentStore from "../store/enrollmentStore.js";
 
 const LectureList = () => {
     const { mode } = useViewStore();
     const { lectures,setLectures } = useLectureStore();
+    const { setCartList } = useCartStore();
+    const { setEnrollmentList } = useEnrollmentStore()
+    const { major, type, keyword,isCart } = useSearchStore();
 
-    const isCart = mode === "CART";
-
-    const lectureData = lectures;
-    const { major, type, keyword } = useSearchStore();
 
     useEffect(() => {
         const fetchData = async () => {
-            await getLectures(keyword, major, type ,setLectures);
-
+            if (isCart) {
+                const data = await getCart();
+                setLectures(data);
+            } else {
+                const data = await getLectures(keyword, major, type);
+                setLectures(data);
+            }
         };
-        fetchData();
-    }, [keyword, major, type ,setLectures]);
 
+        fetchData();
+    }, [isCart, major, type, keyword]);
+
+    const getModeConfig = () => {
+        if (mode === "CART") {
+            return {
+                label: "장바구니담기",
+                confirmMsg: "선택한 과목을 장바구니에 담으시겠습니까?",
+                action: async (lectureId) => {
+                    await addCart(lectureId);
+
+                    const updatedCart = await getCart();
+
+                    setCartList(updatedCart);
+                },
+            };
+        }
+
+
+        return {
+            label: "신청",
+            confirmMsg: "선택한 강의를 신청하시겠습니까?",
+            action: async (lectureId) => {
+                await enrollLecture(lectureId);
+
+                const updatedEnrollments = await getEnrollments();
+
+                setEnrollmentList(updatedEnrollments);
+            },
+        };
+    };
+
+    const config = getModeConfig();
+
+    const handleAction = async (lectureId) => {
+        if (window.confirm(config.confirmMsg)) {
+            try {
+                console.log(lectureId)
+                await config.action(lectureId);
+            } catch (err) {
+                console.error(err);
+                alert("처리에 실패했습니다.");
+            }
+        }
+    };
 
     return (
         <div className="lecture-wrapper">
@@ -55,7 +106,7 @@ const LectureList = () => {
 
                     <thead>
                     <tr>
-                        <th className="col-cart">{isCart ? "장바구니담기" : "신청"}</th>
+                        <th className="col-cart">{config.label}</th>
                         <th>No</th>
                         <th>교과목명</th>
                         <th>학수번호</th>
@@ -76,9 +127,10 @@ const LectureList = () => {
                     </thead>
 
                     <tbody>
-                    {lectureData.length > 0 ? (
-                        lectureData.map((lecture) => (
-                            <LectureRow key={lecture.id} lecture={lecture} mode={mode} />
+                    {lectures.length > 0 ? (
+                        lectures.map((lecture) => (
+
+                            <LectureRow key={lecture.id} lecture={lecture} actionLabel={config.label} onAction={() => handleAction(lecture.id)} />
                         ))
                     ) : (
                         <tr>
