@@ -19,7 +19,8 @@ const Search = () => {
         setKeyword(searchKeyword);
 
         try {
-            await getLectures(searchKeyword, "", "", setLectures);
+            const response =  await getLectures(searchKeyword, "", "");
+            setLectures(response)
         } catch (err) {
             console.error("검색 실패", err);
         }
