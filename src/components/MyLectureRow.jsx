@@ -1,58 +1,25 @@
 import React from "react";
-import useViewStore from "../store/viewStore.js";
-import {cancelEnrollment, getEnrollments} from "../api/enrollment.js";
-import useCartStore from "../store/cartStore.js";
-import {deleteCart, getCart} from "../api/cart.js";
 
-const MyLectureRow = ({ item }) => {
-    const { mode } = useViewStore();
-    const {  setCartList } = useCartStore();
-    const isCartMode = mode === "CART";
-    const isEnrollMode = mode === "ENROLL";
-
-    const handleClick = async () => {
-        if (isCartMode) {
-            if (window.confirm("장바구니에서 삭제하시겠습니까?")) {
-                await deleteCart(item.lectureId);
-
-                const carts = getCart();
-
-                setCartList(carts)
-            }
-        }
-
-        if (isEnrollMode) {
-            if (window.confirm("수강신청을 취소하시겠습니까?")) {
-                try {
-                    await cancelEnrollment(item.lectureId);
-                    const enrollments = await getEnrollments();
-                    setCartList(enrollments);
-                }catch (err){
-                    console.error("[MyLectureRow] 수강신청 취소 실패", err);
-                    alert("수강신청 취소에 실패했습니다.");
-                }
-            }
-        }
-    };
+const MyLectureRow = ({ lecture , actionLabel , onAction }) => {
 
     return (
         <tr>
             <td>
-                <button className="delete-btn" onClick={handleClick}>
-                    {isCartMode ? "장바구니삭제" : "취소"}
+                <button className="delete-btn" onClick={onAction}>
+                    {actionLabel}
                 </button>
             </td>
 
-            <td className="text-left">{item.lectureName}</td>
-            <td>{item.lectureCode}</td>
-            <td>{item.classNumber}</td>
-            <td>{item.type}</td>
-            <td>{item.credit.toFixed(2)}</td>
-            <td>{item.time.toFixed(2)}</td>
-            <td>{item.professor}</td>
-            <td className="text-left">{item.desc}</td>
-            <td className="text-left">{item.schedule}</td>
-            <td>{item.note}</td>
+            <td className="text-left">{lecture.lectureName}</td>
+            <td>{lecture.lectureCode}</td>
+            <td>{lecture.classNumber}</td>
+            <td>{lecture.type}</td>
+            <td>{lecture.credit.toFixed(2)}</td>
+            <td>{lecture.time.toFixed(2)}</td>
+            <td>{lecture.professor}</td>
+            <td className="text-left">{lecture.desc}</td>
+            <td className="text-left">{lecture.schedule}</td>
+            <td>{lecture.note}</td>
         </tr>
     );
 };
