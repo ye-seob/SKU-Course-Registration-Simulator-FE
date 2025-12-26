@@ -3,7 +3,7 @@ import SideBar from "../components/SideBar.jsx";
 import "../styles/home.css";
 import TwoSectionLayout from "../components/Layout";
 import LectureList from "../components/LectureList.jsx";
-import CartList from "../components/CartList.jsx";
+import MyLectureList from "../components/MyLectureList.jsx";
 import InfoNotice from "../components/InfoNotice.jsx";
 import WarningNotice from "../components/WarningNotice.jsx";
 
@@ -15,7 +15,7 @@ const Home = () => {
     const isHome = mode === 'HOME';
 
     const topComponent = isHome ? <InfoNotice /> : <LectureList />;
-    const bottomComponent = isHome ? <WarningNotice /> : <CartList />;
+    const bottomComponent = isHome ? <WarningNotice /> : <MyLectureList />;
 
     return (
             <div className="home-container">

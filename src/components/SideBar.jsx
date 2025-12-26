@@ -9,15 +9,11 @@ import {MAJOR, TYPE} from "../utils/constant.js";
 import useUserStore from "../store/userStore.js";
 import useSearchStore from "../store/searchStore.js";
 import useViewStore from "../store/viewStore.js";
-import useLectureStore from "../store/lectureStore.js";
-import {getLectures} from "../api/getLectures.js";
-import {getCart} from "../api/cart.js";
 
 const SideBar = () => {
     const { user } = useUserStore();
-    const { setMajor, setType, setIsCart} = useSearchStore();
+    const { setMajor, setType, setIsCart , setKeyword} = useSearchStore();
     const { mode, setMode } = useViewStore();
-    const { setLectures } = useLectureStore();
 
     const doubleMajor = "경영학과";
     const minor = "전자컴퓨터공학과";
@@ -32,24 +28,10 @@ const SideBar = () => {
     const handleClick = async (newMajor, newType, cart = false) => {
         ToEnroll();
         setMajor(newMajor);
+        setKeyword("");
         setType(newType);
         setIsCart(cart);
-        let num = 0;
-        try {
-            if (cart) {
-                console.log(num++)
-                 const response = await getCart();
-                console.log(response)
-                 setLectures(response);
-            } else {
-
-                await getLectures("", newMajor, newType, setLectures);
-            }
-        } catch (err) {
-            console.error("데이터 조회 실패", err);
-            setLectures([]);
-        }
-        }
+      }
 
         return (
         <div className="side-bar-container">
@@ -58,6 +40,7 @@ const SideBar = () => {
                     src="https://s.skuniv.ac.kr/course/img/sugang/logo2.gif"
                     alt="서경대학교 로고"
                     className="logo-image"
+                    onClick={() => setMode("HOME")}
                 />
             </div>
 
