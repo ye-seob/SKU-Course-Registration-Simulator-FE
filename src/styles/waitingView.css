@@ -1,11 +1,23 @@
+.waiting-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1000;
+}
+
 .waiting-container {
     width: 95%;
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 15px 40px;
+    max-width: 400px;
+    padding: 15px 50px;
     background-color: #fff;
     color: #333;
-    border: 5px solid #E8EBF0;
+    border: 5px solid #e8ebf0;transform: translateY(60px);
 }
 
 .waiting-header {
@@ -17,13 +29,12 @@
 }
 
 .text-blue {
-    color: #5238CF;
+    color: #5238cf;
 }
 
 .text-black {
     color: #000000;
 }
-
 
 .waiting-time {
     text-align: right;
@@ -38,11 +49,10 @@
     font-size: 15px;
 }
 
-
 .waiting-progress-bar {
     width: 100%;
     height: 8px;
-    background-color: #B4D5FF;
+    background-color: #b4d5ff;
     border-radius: 20px;
     margin-bottom: 20px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -62,7 +72,7 @@
 }
 
 .highlight-number {
-    color: #5238CF;
+    color: #5238cf;
     font-weight: bold;
     text-decoration: underline;
 }
