@@ -10,9 +10,10 @@ import {enrollLecture, getEnrollments} from "../api/enrollment.js";
 import {addCart, getCart} from "../api/cart.js";
 import useCartStore from "../store/cartStore.js";
 import useEnrollmentStore from "../store/enrollmentStore.js";
+import WaitingView from "./WaitingView.jsx";
 
 const LectureList = () => {
-    const { mode } = useViewStore();
+    const { mode,isWaiting, setWaiting } = useViewStore();
     const { lectures,setLectures } = useLectureStore();
     const { setCartList } = useCartStore();
     const { setEnrollmentList } = useEnrollmentStore()
@@ -48,16 +49,24 @@ const LectureList = () => {
             };
         }
 
-
         return {
             label: "신청",
             confirmMsg: "선택한 강의를 신청하시겠습니까?",
             action: async (lectureId) => {
-                await enrollLecture(lectureId);
+                setWaiting(true);
 
-                const updatedEnrollments = await getEnrollments();
+                setTimeout(async () => {
+                    try {
+                        await enrollLecture(lectureId);
 
-                setEnrollmentList(updatedEnrollments);
+                        const updatedEnrollments = await getEnrollments();
+                        setEnrollmentList(updatedEnrollments);
+                    } catch (e) {
+                        alert("수강신청에 실패했습니다.");
+                    } finally {
+                        setWaiting(false);
+                    }
+                }, 5000);
             },
         };
     };
@@ -77,7 +86,9 @@ const LectureList = () => {
     };
 
     return (
-        <div className="lecture-wrapper">
+        <div className="lecture-wrapper" style={{ position: "relative" }}>
+            {isWaiting && <WaitingView />}
+
             <div className="lectureList-info-bar">
                 <span className="lecture-title-text">[개설강좌]</span>
             </div>
