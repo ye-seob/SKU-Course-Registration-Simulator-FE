@@ -1,0 +1,76 @@
+.waiting-container {
+    width: 95%;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 15px 40px;
+    background-color: #fff;
+    color: #333;
+    border: 5px solid #E8EBF0;
+}
+
+.waiting-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: left;
+    letter-spacing: -1px;
+}
+
+.text-blue {
+    color: #5238CF;
+}
+
+.text-black {
+    color: #000000;
+}
+
+
+.waiting-time {
+    text-align: right;
+    font-size: 15px;
+    margin-bottom: 4px;
+    color: #000000;
+}
+
+.waiting-time-value {
+    text-decoration: underline;
+    margin-left: 5px;
+    font-size: 15px;
+}
+
+
+.waiting-progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #B4D5FF;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.waiting-info-box {
+    background-color: #eeeeee;
+    padding: 8px 10px;
+    font-size: 14px;
+    line-height: 1.3;
+    color: #333;
+    text-align: left;
+}
+
+.waiting-info-text {
+    margin-top: 5px;
+}
+
+.highlight-number {
+    color: #5238CF;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.waiting-warning {
+    margin-top: 20px;
+    color: #0000cd;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+}
