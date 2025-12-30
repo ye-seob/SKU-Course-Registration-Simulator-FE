@@ -9,7 +9,7 @@ import useEnrollmentStore from "../store/enrollmentStore.js";
 
 
 const MyLectureList = () => {
-    const { mode } = useViewStore();
+    const { mode ,isWaiting} = useViewStore();
     const { cartList, setCartList } = useCartStore();
     const { enrollmentList,setEnrollmentList } = useEnrollmentStore();
 
@@ -76,7 +76,7 @@ const MyLectureList = () => {
 
     useEffect(() => {
         config.fetchData();
-    }, [mode]);
+    }, [mode,isWaiting]);
 
 
     const emptyRows = config.getEmptyRows();

@@ -1,23 +1,28 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "../styles/LectureList.css";
 import LectureRow from "./LectureRow.jsx";
-import useViewStore from "../store/viewStore.js";
-import useLectureStore from "../store/lectureStore.js";
-
-import {getLectures} from "../api/getLectures.js";
-import useSearchStore from "../store/searchStore.js";
-import {enrollLecture, getEnrollments} from "../api/enrollment.js";
-import {addCart, getCart} from "../api/cart.js";
-import useCartStore from "../store/cartStore.js";
-import useEnrollmentStore from "../store/enrollmentStore.js";
 import WaitingView from "./WaitingView.jsx";
 
+import useViewStore from "../store/viewStore.js";
+import useLectureStore from "../store/lectureStore.js";
+import useSearchStore from "../store/searchStore.js";
+import useCartStore from "../store/cartStore.js";
+
+import {getLectures} from "../api/getLectures.js";
+import {enrollLecture, getQueueRank,} from "../api/enrollment.js";
+import {addCart, getCart} from "../api/cart.js";
+
 const LectureList = () => {
-    const { mode,isWaiting, setWaiting } = useViewStore();
-    const { lectures,setLectures } = useLectureStore();
+    const { mode, isWaiting, setWaiting } = useViewStore();
+    const { lectures, setLectures } = useLectureStore();
     const { setCartList } = useCartStore();
-    const { setEnrollmentList } = useEnrollmentStore()
-    const { major, type, keyword,isCart } = useSearchStore();
+    const { major, type, keyword, isCart } = useSearchStore();
+
+
+    const [rankData, setRankData] = useState({
+        aheadCount: 0,
+        behindCount: 0,
+    });
 
 
     useEffect(() => {
@@ -30,9 +35,9 @@ const LectureList = () => {
                 setLectures(data);
             }
         };
-
         fetchData();
-    }, [isCart, major, type, keyword]);
+    }, [isCart, major, type, keyword, setLectures,isWaiting]);
+
 
     const getModeConfig = () => {
         if (mode === "CART") {
@@ -41,9 +46,7 @@ const LectureList = () => {
                 confirmMsg: "선택한 과목을 장바구니에 담으시겠습니까?",
                 action: async (lectureId) => {
                     await addCart(lectureId);
-
                     const updatedCart = await getCart();
-
                     setCartList(updatedCart);
                 },
             };
@@ -53,20 +56,22 @@ const LectureList = () => {
             label: "신청",
             confirmMsg: "선택한 강의를 신청하시겠습니까?",
             action: async (lectureId) => {
+                await enrollLecture(lectureId);
+
                 setWaiting(true);
 
-                setTimeout(async () => {
+                 setInterval(async () => {
                     try {
-                        await enrollLecture(lectureId);
-
-                        const updatedEnrollments = await getEnrollments();
-                        setEnrollmentList(updatedEnrollments);
-                    } catch (e) {
-                        alert("수강신청에 실패했습니다.");
-                    } finally {
-                        setWaiting(false);
+                        const rank = await getQueueRank(lectureId);
+                        setRankData(rank);
+                    } catch (err) {
+                        setWaiting(false)
+                        setRankData({
+                            aheadCount: 0,
+                            behindCount: 0,
+                        });
                     }
-                }, 5000);
+                }, 500);
             },
         };
     };
@@ -74,20 +79,25 @@ const LectureList = () => {
     const config = getModeConfig();
 
     const handleAction = async (lectureId) => {
-        if (window.confirm(config.confirmMsg)) {
-            try {
-                console.log(lectureId)
-                await config.action(lectureId);
-            } catch (err) {
-                console.error(err);
-                alert("처리에 실패했습니다.");
-            }
+        if (!window.confirm(config.confirmMsg)) return;
+
+        try {
+            await config.action(lectureId);
+        } catch (err) {
+            console.error(err);
+            alert("처리에 실패했습니다.");
+            setWaiting(false);
         }
     };
 
     return (
         <div className="lecture-wrapper" style={{ position: "relative" }}>
-            {isWaiting && <WaitingView />}
+            {isWaiting && (
+                <WaitingView
+                    aheadCount={rankData.aheadCount}
+                    behindCount={rankData.behindCount}
+                />
+            )}
 
             <div className="lectureList-info-bar">
                 <span className="lecture-title-text">[개설강좌]</span>
@@ -117,16 +127,16 @@ const LectureList = () => {
 
                     <thead>
                     <tr>
-                        <th className="col-cart">{config.label}</th>
+                        <th>{config.label}</th>
                         <th>No</th>
                         <th>교과목명</th>
                         <th>학수번호</th>
                         <th>분반</th>
-                        <th>이수<br />구분</th>
-                        <th>학<br />점</th>
-                        <th>시<br />간</th>
-                        <th>수강<br />인원</th>
-                        <th>제한<br />인원</th>
+                        <th>이수구분</th>
+                        <th>학점</th>
+                        <th>시간</th>
+                        <th>수강인원</th>
+                        <th>제한인원</th>
                         <th>담당교수</th>
                         <th>성적평가방법</th>
                         <th>학기주차</th>
@@ -140,12 +150,20 @@ const LectureList = () => {
                     <tbody>
                     {lectures.length > 0 ? (
                         lectures.map((lecture) => (
-
-                            <LectureRow key={lecture.id} lecture={lecture} actionLabel={config.label} onAction={() => handleAction(lecture.id)} />
+                            <LectureRow
+                                key={lecture.id}
+                                lecture={lecture}
+                                actionLabel={config.label}
+                                onAction={() =>
+                                    handleAction(lecture.id)
+                                }
+                            />
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={17}>데이터가 존재하지 않습니다.</td>
+                            <td colSpan={17}>
+                                데이터가 존재하지 않습니다.
+                            </td>
                         </tr>
                     )}
                     </tbody>

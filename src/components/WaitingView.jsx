@@ -1,7 +1,26 @@
 import React from "react";
 import "../styles/waitingView.css";
 
-const WaitingView = () => {
+const WaitingView = ({ aheadCount, behindCount }) => {
+    // 예상 대기 시간 계산 (내 앞 인원 * 0.3초)
+    const totalSeconds = Math.floor(aheadCount * 0.3);
+
+    const formatTime = (seconds) => {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = seconds % 60;
+        return `${h > 0 ? h + "시간 " : ""}${m > 0 ? m + "분 " : ""}${s}초`;
+    };
+
+
+
+    const totalPeople = aheadCount + behindCount;
+
+    const progressPercentage =
+        totalPeople === 0
+            ? 0
+            : ((totalPeople - aheadCount) / totalPeople) * 100;
+
     return (
         <div className="waiting-overlay">
             <div className="waiting-container">
@@ -13,16 +32,22 @@ const WaitingView = () => {
 
                 <div className="waiting-time">
                     예상대기시간 :
-                    <span className="waiting-time-value">16시간 3분 58초</span>
+                    <span className="waiting-time-value">{formatTime(totalSeconds)}</span>
                 </div>
 
-                <div className="waiting-progress-bar"></div>
+                <div className="waiting-progress-bar">
+                    <div
+                        className="progress-fill"
+                        style={{
+                            width: `${progressPercentage}%`,
+                        }}
+                    ></div>
+                </div>
 
                 <div className="waiting-info-box">
                     <div>
-                        고객님 앞에 <span className="highlight-number">231350</span> 명,
-                        뒤에 <span className="highlight-number">1028</span> 명의 대기자가
-                        있습니다.
+                        고객님 앞에 <span className="highlight-number">{aheadCount}</span> 명,
+                        뒤에 <span className="highlight-number">{behindCount}</span> 명의 대기자가 있습니다.
                     </div>
 
                     <div className="waiting-info-text">
