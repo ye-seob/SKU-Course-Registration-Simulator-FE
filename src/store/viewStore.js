@@ -7,13 +7,14 @@ const useViewStore = create(
             mode: "HOME",
             setMode: (mode) => set({ mode }),
 
-
             isWaiting: false,
             setWaiting: (value) => set({ isWaiting: value }),
         }),
         {
             name: "view-storage",
-            getStorage: () => localStorage,
+            partialize: (state) => ({
+                mode: state.mode,
+            }),
         }
     )
 );
