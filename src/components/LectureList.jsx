@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import "../styles/LectureList.css";
 import LectureRow from "./LectureRow.jsx";
 import WaitingView from "./WaitingView.jsx";
@@ -9,21 +9,15 @@ import useSearchStore from "../store/searchStore.js";
 import useCartStore from "../store/cartStore.js";
 
 import {getLectures} from "../api/getLectures.js";
-import {enrollLecture, getQueueRank,} from "../api/enrollment.js";
 import {addCart, getCart} from "../api/cart.js";
+import useQueueSocket from "../utils/useQueueSocket.js";
 
 const LectureList = () => {
     const { mode, isWaiting, setWaiting } = useViewStore();
     const { lectures, setLectures } = useLectureStore();
     const { setCartList } = useCartStore();
     const { major, type, keyword, isCart } = useSearchStore();
-
-
-    const [rankData, setRankData] = useState({
-        aheadCount: 0,
-        behindCount: 0,
-    });
-
+    const { connectQueue, rankData } = useQueueSocket();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -56,23 +50,8 @@ const LectureList = () => {
             label: "신청",
             confirmMsg: "선택한 강의를 신청하시겠습니까?",
             action: async (lectureId) => {
-                await enrollLecture(lectureId);
-
-                setWaiting(true);
-
-                 setInterval(async () => {
-                    try {
-                        const rank = await getQueueRank(lectureId);
-                        setRankData(rank);
-                    } catch (err) {
-                        setWaiting(false)
-                        setRankData({
-                            aheadCount: 0,
-                            behindCount: 0,
-                        });
-                    }
-                }, 500);
-            },
+                    connectQueue(lectureId);
+                },
         };
     };
 
