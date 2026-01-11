@@ -89,6 +89,11 @@ const useQueueSocket = () => {
                 stompClient.subscribe("/user/queue-end", (message) => {
                     const data = JSON.parse(message.body);
 
+                    if (data?.status === "FAIL") {
+                        alert(data.message ?? "수강신청에 실패했습니다.");
+                    }
+
+
                     // 대기열 종료 공통 처리
                     handleQueueEnd(data);
                 });
