@@ -1,7 +1,24 @@
 import React from 'react';
 
+const LectureRow = ({ lecture, actionLabel, onAction }) => {
+    console.log(lecture)
+    let schedule = "";
 
-const LectureRow = ({ lecture, actionLabel , onAction}) => {
+    try {
+        const scheduleObj = typeof lecture.schedule === "string"
+            ? JSON.parse(lecture.schedule)
+            : lecture.schedule;
+
+        if (scheduleObj && typeof scheduleObj === "object") {
+            schedule = Object.entries(scheduleObj)
+                .map(([day, times]) => `${day}: ${Array.isArray(times) ? times.join(", ") : times}`)
+                .join(" / ");
+        }
+    } catch (e) {
+        // 파싱 실패 시 원래 문자열 그대로
+        schedule = lecture.schedule || "";
+    }
+
     return (
         <tr className="course-row">
             <td>
@@ -20,11 +37,11 @@ const LectureRow = ({ lecture, actionLabel , onAction}) => {
             <td>{lecture.enrollment.toFixed(2)}</td>
             <td>{lecture.capacity.toFixed(2)}</td>
             <td>{lecture.professor}</td>
-            <td>{lecture.evalMethod}</td>
+            <td>{lecture.gradingMethod}</td>
             <td>{lecture.week}</td>
-            <td>{lecture.rating}</td>
-            <td className="text-left">{lecture.desc}</td>
-            <td className="text-left">{lecture.schedule}</td>
+            <td>{lecture.rating.toFixed(1)}</td>
+            <td className="text-left">{lecture.room}</td>
+            <td className="text-left">{schedule}</td>
             <td>{lecture.competency}</td>
         </tr>
     );
