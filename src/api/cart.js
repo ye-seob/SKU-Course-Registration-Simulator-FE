@@ -5,7 +5,7 @@ export const getCart = async () => {
     try {
         const response = await api.get("/carts");
 
-        return response.data.data;
+        return response.data
     } catch (error) {
         console.error("장바구니 조회 실패:", error);
 
@@ -18,10 +18,10 @@ export const addCart = async (lectureId) => {
     try {
         const response = await api.post("/carts/add", { lectureId });
 
-        return response.data;
+        return response;
     } catch (error) {
-        console.error("장바구니 추가 실패:", error);
-        throw error;
+
+        throw error.response.data;
     }
 };
 
