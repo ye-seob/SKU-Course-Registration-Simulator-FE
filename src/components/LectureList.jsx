@@ -26,6 +26,7 @@ const LectureList = () => {
                 setLectures(data);
             } else {
                 const data = await getLectures(keyword, major, type);
+
                 setLectures(data);
             }
         };
@@ -63,8 +64,7 @@ const LectureList = () => {
         try {
             await config.action(lectureId);
         } catch (err) {
-            console.error(err);
-            alert("처리에 실패했습니다.");
+            alert(err.message)
             setWaiting(false);
         }
     };

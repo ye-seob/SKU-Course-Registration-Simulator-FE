@@ -9,7 +9,7 @@ export const login = async (loginData) => {
 
     try {
         const response = await api.post("/auth/login", loginData);
-        const userData = response.data.data;
+        const userData = response.data
         const token = userData.token;
 
         localStorage.setItem('accessToken', token);
@@ -18,7 +18,7 @@ export const login = async (loginData) => {
 
         return userData; // navigate는 컴포넌트에서 처리
     } catch (error) {
-        console.error("로그인 실패:", error);
+        console.log("로그인 실패:", error);
         throw error;
     }
 };

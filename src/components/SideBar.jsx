@@ -10,7 +10,7 @@ import useUserStore from "../store/userStore.js";
 import useSearchStore from "../store/searchStore.js";
 import useViewStore from "../store/viewStore.js";
 
-const SideBar = () => {
+const SideBar = ({onRefresh}) => {
     const { user } = useUserStore();
     const { setMajor, setType, setIsCart , setKeyword} = useSearchStore();
     const { mode, setMode } = useViewStore();
@@ -26,12 +26,15 @@ const SideBar = () => {
 
 
     const handleClick = async (newMajor, newType, cart = false) => {
+
         ToEnroll();
         setMajor(newMajor);
         setKeyword("");
         setType(newType);
         setIsCart(cart);
-      }
+
+        onRefresh();
+    }
 
         return (
         <div className="side-bar-container">

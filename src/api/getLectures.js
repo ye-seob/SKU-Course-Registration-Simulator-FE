@@ -11,7 +11,7 @@ export const getLectures = async (keyword, major ,type) => {
         });
 
 
-        return response.data.data;
+        return response.data
     } catch (error) {
         console.error("강의 조회 실패", error);
 
