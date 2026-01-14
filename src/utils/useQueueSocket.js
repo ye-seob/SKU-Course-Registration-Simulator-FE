@@ -47,7 +47,7 @@ const useQueueSocket = () => {
          * SockJS 소켓 생성
          * - 서버의 /ws 엔드포인트와 연결
          */
-        const socket = new SockJS("http://localhost:8080/ws");
+        const socket = new SockJS("http://localhost:8081/ws");
 
         /**
          * SockJS 위에 STOMP 프로토콜 적용
