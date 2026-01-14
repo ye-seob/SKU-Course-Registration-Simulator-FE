@@ -3,8 +3,9 @@ import '../styles/login.css';
 import {login} from "../api/login.js";
 import {useNavigate} from "react-router-dom";
 
-const logoUrl = "https://s.skuniv.ac.kr/course/img/sugang/logo2.gif";
-const loginBtnUrl = "https://s.skuniv.ac.kr/course/img/sugang/login2.gif"
+const logoUrl = "/image/logo.gif";
+const loginBtnUrl = "/image/login.gif";
+
 
 const Login = () => {
     const [studentId, setStudentId] = useState("");

@@ -4,7 +4,7 @@ import {MAJOR} from "../utils/constant.js";
 import {signup} from "../api/signup.js";
 import {useNavigate} from "react-router-dom";
 
-const logoUrl = "https://s.skuniv.ac.kr/course/img/sugang/logo2.gif";
+const logoUrl = "/image/logo.gif";
 
 const Signup = () => {
     const navigate = useNavigate();
