@@ -6,7 +6,7 @@ import Stomp from "stompjs";
 import useViewStore from "../store/viewStore";
 
 
-const useQueueSocket = () => {
+const useQueueSocket = (onRefresh) => {
 
     const stompRef = useRef(null);
 
@@ -113,6 +113,7 @@ const useQueueSocket = () => {
                 setWaiting(true);
             },
             (error) => {
+                window.location.reload();
                 console.error("STOMP error", error);
             }
         );
@@ -141,6 +142,8 @@ const useQueueSocket = () => {
 
         // 강의 ID 초기화
         lectureIdRef.current = null;
+
+        if (onRefresh) onRefresh();
     };
 
     const disconnectSocket = () => {
@@ -148,6 +151,7 @@ const useQueueSocket = () => {
             stompRef.current.disconnect();
             stompRef.current = null;
         }
+
     };
 
     return {
