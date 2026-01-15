@@ -7,7 +7,7 @@ const LectureRow = ({ lecture, actionLabel, onAction }) => {
 
     const handleRatingClick = async (score) => {
         try {
-            await rateLecture(lecture.id, score);
+            await rateLecture(lecture.lectureId, score);
             toast.success(`${score}점이 등록되었습니다.`);
             setIsModalOpen(false);
         } catch (error) {
@@ -39,7 +39,7 @@ const LectureRow = ({ lecture, actionLabel, onAction }) => {
                         {actionLabel}
                     </button>
                 </td>
-                <td>{lecture.id}</td>
+                <td>{lecture.lectureId}</td>
                 <td className="text-left">{lecture.lectureName}</td>
                 <td>{lecture.lectureCode}</td>
                 <td>{lecture.classNumber}</td>
