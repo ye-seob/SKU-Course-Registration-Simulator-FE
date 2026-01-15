@@ -40,8 +40,14 @@ const useQueueSocket = (onRefresh) => {
      */
     const connectQueue = (lectureId) => {
 
+        if(lectureId == null){
+            alert("다시 시도해주세요.")
+            return;
+        }
+
         // 현재 강의 ID를 ref에 저장 (나중에 취소시 사용)
         lectureIdRef.current = lectureId;
+
 
         /**
          * SockJS 소켓 생성
@@ -127,7 +133,7 @@ const useQueueSocket = (onRefresh) => {
      * - 서버에서 종료 메시지를 받은 경우
      * - 성공/실패 여부와 무관하게 공통 정리
      */
-    const handleQueueEnd = (data) => {
+    const handleQueueEnd = () => {
 
         /**
          * 소켓 연결 종료
