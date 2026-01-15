@@ -130,11 +130,11 @@ const LectureList = () => {
                     {lectures.length > 0 ? (
                         lectures.map((lecture) => (
                             <LectureRow
-                                key={lecture.id}
+                                key={lecture.lectureId}
                                 lecture={lecture}
                                 actionLabel={config.label}
                                 onAction={() =>
-                                    handleAction(lecture.id)
+                                    handleAction(lecture.lectureId)
                                 }
                             />
                         ))

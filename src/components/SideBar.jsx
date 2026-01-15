@@ -14,7 +14,7 @@ const SideBar = ({onRefresh}) => {
     const { user } = useUserStore();
     const { setMajor, setType, setIsCart , setKeyword} = useSearchStore();
     const { mode, setMode } = useViewStore();
-
+    const logoUrl = "/image/logo.gif";
     const doubleMajor = "경영학과";
     const minor = "전자컴퓨터공학과";
 
@@ -40,7 +40,7 @@ const SideBar = ({onRefresh}) => {
         <div className="side-bar-container">
             <div className="logo-area">
                 <img
-                    src="https://s.skuniv.ac.kr/course/img/sugang/logo2.gif"
+                    src={logoUrl}
                     alt="서경대학교 로고"
                     className="logo-image"
                     onClick={() => setMode("HOME")}

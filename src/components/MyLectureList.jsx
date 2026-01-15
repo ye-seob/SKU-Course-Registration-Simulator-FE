@@ -86,6 +86,7 @@ const MyLectureList = () => {
     const handleAction = async (lectureId) => {
         if (window.confirm(confirmMsg)) {
             try {
+
                 await config.action(lectureId);
             } catch (err) {
                 console.error(err);
