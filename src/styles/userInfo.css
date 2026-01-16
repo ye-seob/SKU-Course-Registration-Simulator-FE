@@ -1,0 +1,47 @@
+.user-info-container {
+    background-color: #f8fcf4;
+    width: 160px;
+    overflow: hidden;
+}
+
+
+.user-info-header {
+    background-color: #bbd788;
+    padding: 7px 10px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    margin-right: 5px;
+    font-size: 0.9em;
+}
+
+.user-title {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: white;
+    margin-top: 10px;
+}
+
+.user-details-list {
+    padding: 10px;
+    line-height: 1.2;
+}
+
+.detail-item {
+    display: flex;
+    font-size: 0.8em;
+    color: black;
+}
+
+.detail-label {
+    font-weight: bold;
+}
+
+.detail-value {
+    margin-left: 10px;
+    font-weight: normal;
+}
+

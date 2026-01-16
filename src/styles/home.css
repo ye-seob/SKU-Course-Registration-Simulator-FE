@@ -1,0 +1,26 @@
+:root {
+    --sidebar-width: 150px;
+}
+
+.home-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.side-bar-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.main-content-area {
+    flex: 1;
+    margin-left: 150px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #fff;
+}

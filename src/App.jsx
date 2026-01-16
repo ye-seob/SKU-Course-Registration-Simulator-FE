@@ -1,19 +1,24 @@
 import React from "react";
+import Router from "./routes/Router.jsx";
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
     return (
         <div className="App">
-            <div >
-                <h1>서경대 수강신청 시뮬레이터</h1>
-            </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
 
-            <div >
-                <p>여기에 페이지 내용을 추가하세요.</p>
-            </div>
-
-            <div>
-                © 2025 SKU Course Simulator
-            </div>
+            <Router/>
         </div>
     );
 };
