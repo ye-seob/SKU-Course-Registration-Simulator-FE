@@ -3,6 +3,7 @@ import '../styles/signupPage.css';
 import {MAJOR} from "../utils/constant.js";
 import {signup} from "../api/signup.js";
 import {useNavigate} from "react-router-dom";
+import {toast} from 'react-toastify';
 
 const logoUrl = "/image/logo.gif";
 
@@ -12,9 +13,8 @@ const Signup = () => {
         studentId: "",
         name: "",
         password: "",
+        passwordConfirm: "",
         major: "소프트웨어학과",
-        minor: "없음",
-        convergenceMajor: "없음",
         grade: "1"
     });
 
@@ -28,8 +28,9 @@ const Signup = () => {
         try {
             await signup(formData);
             navigate('/login');
+            toast.success("회원가입 성공");
         } catch (err) {
-            // toast에서 이미 에러 처리됨
+            toast.error(err.response.data.message);
         }
     };
 
@@ -90,6 +91,17 @@ const Signup = () => {
                             required
                         />
                     </div>
+                    <div className="input-box full-width">
+                        <label>비밀번호 확인</label>
+                        <input
+                            type="password"
+                            name="passwordConfirm"
+                            placeholder="비밀번호를 다시 입력해주세요"
+                            value={formData.passwordConfirm}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
                     <div className="section-divider">정보</div>
 
@@ -104,30 +116,7 @@ const Signup = () => {
                         </select>
                     </div>
 
-                    <div className="form-group-row">
-                        <div className="input-box">
-                            <label>부전공 (선택)</label>
-                            <select name="minor" value={formData.minor} onChange={handleChange}>
-                                <option value="없음">없음</option>
-                                {MAJOR.map(major => (
-                                    <option key={major} value={major}>
-                                        {major}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="input-box">
-                            <label>융합전공 (선택)</label>
-                            <select name="convergenceMajor" value={formData.convergenceMajor} onChange={handleChange}>
-                                <option value="없음">없음</option>
-                                {MAJOR.map(major => (
-                                    <option key={major} value={major}>
-                                        {major}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    </div>
+
 
                     <div className="input-box full-width">
                         <label>학년</label>

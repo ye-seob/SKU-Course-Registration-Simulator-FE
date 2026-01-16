@@ -15,8 +15,7 @@ const SideBar = ({onRefresh}) => {
     const { setMajor, setType, setIsCart , setKeyword} = useSearchStore();
     const { mode, setMode } = useViewStore();
     const logoUrl = "/image/logo.gif";
-    const doubleMajor = "경영학과";
-    const minor = "전자컴퓨터공학과";
+
 
     const ToEnroll = () => {
         if (mode === "HOME") {
@@ -87,17 +86,17 @@ const SideBar = ({onRefresh}) => {
 
                     <CustomButton
                         text="복수전공"
-                        onClick={() => handleClick(doubleMajor, "")}
+                        onClick={() => alert("추후 업데이트")}
                     />
 
                     <CustomButton
                         text="부전공"
-                        onClick={() => handleClick(minor, "")}
+                        onClick={() => alert("추후 업데이트")}
                     />
 
                     <CustomButton
                         text="융합전공"
-                        onClick={() => handleClick("", "")}
+                        onClick={() => alert("추후 업데이트")}
                     />
                 </div>
             </div>
