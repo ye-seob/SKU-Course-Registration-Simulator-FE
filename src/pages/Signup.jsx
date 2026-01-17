@@ -9,23 +9,30 @@ const logoUrl = "/image/logo.gif";
 
 const Signup = () => {
     const navigate = useNavigate();
+
+    const [agree, setAgree] = useState(false);
     const [formData, setFormData] = useState({
-        studentId: "",
-        name: "",
-        password: "",
-        passwordConfirm: "",
-        major: "소프트웨어학과",
-        grade: "1"
+        studentId: "", name: "", password: "", passwordConfirm: "", major: "소프트웨어학과", grade: "1"
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        const {name, value} = e.target;
+        setFormData(prev => ({...prev, [name]: value}));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            if (!agree) {
+                toast.error("약관 동의는 필수입니다.");
+                return;
+            }
+
+            if (formData.password !== formData.passwordConfirm) {
+                toast.error("비밀번호가 일치하지 않습니다.");
+                return;
+            }
+
             await signup(formData);
             navigate('/login');
             toast.success("회원가입 성공");
@@ -35,9 +42,7 @@ const Signup = () => {
     };
 
 
-
-    return (
-        <div className="signup-container">
+    return (<div className="signup-container">
             <div className="signup-card">
                 <header className="signup-header">
                     <div className="header-nav">
@@ -45,11 +50,11 @@ const Signup = () => {
                             &lt;
                         </div>
                         <div className="signup-logo-area">
-                            <img src={logoUrl} alt="서경대학교" className="logo-image" />
+                            <img src={logoUrl} alt="서경대학교" className="logo-image"/>
                         </div>
                     </div>
                     <div className="section-header">
-                        <span className="plus-icon">■</span>
+
                         <h2 className="section-title">회원정보 입력</h2>
                     </div>
                 </header>
@@ -108,14 +113,11 @@ const Signup = () => {
                     <div className="input-box full-width">
                         <label>학과(주전공)</label>
                         <select name="major" value={formData.major} onChange={handleChange}>
-                            {MAJOR.map(major => (
-                                <option key={major} value={major}>
+                            {MAJOR.map(major => (<option key={major} value={major}>
                                     {major}
-                                </option>
-                            ))}
+                                </option>))}
                         </select>
                     </div>
-
 
 
                     <div className="input-box full-width">
@@ -127,12 +129,22 @@ const Signup = () => {
                             <option value="4">4학년</option>
                         </select>
                     </div>
-
+                    <div className="terms-box">
+                        <label className="terms-label">
+                            <input
+                                type="checkbox"
+                                checked={agree}
+                                onChange={(e) => setAgree(e.target.checked)}
+                            />
+                            <span>
+            본 서비스는 <strong>모의 수강신청 시뮬레이션</strong>이며 실제 수강신청과 무관함을 이해하고 동의합니다. (필수)
+        </span>
+                        </label>
+                    </div>
                     <button type="submit" className="signup-btn">가입하기</button>
                 </form>
             </div>
-        </div>
-    );
+        </div>);
 };
 
 export default Signup;
