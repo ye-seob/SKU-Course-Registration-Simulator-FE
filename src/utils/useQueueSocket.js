@@ -119,8 +119,7 @@ const useQueueSocket = (onRefresh) => {
                 setWaiting(true);
             },
             (error) => {
-                window.location.reload();
-                console.error("STOMP error", error);
+                console.log("STOMP error", error);
             }
         );
 
