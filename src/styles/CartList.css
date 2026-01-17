@@ -88,3 +88,6 @@
     cursor: pointer;
     border-radius: 2px;
 }
+.delete-btn:hover{
+    background-color: #b6cc8e;
+}
