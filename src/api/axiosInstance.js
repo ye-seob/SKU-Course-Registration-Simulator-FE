@@ -26,7 +26,6 @@ api.interceptors.response.use(
         const { status, data } = error.response;
 
         if (status === 403) {
-             alert("토큰이 만료되었습니다. 다시 로그인 해주세요.")
              localStorage.removeItem('accessToken');
              window.location.href = '/login';
         }

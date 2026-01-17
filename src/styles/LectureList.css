@@ -85,7 +85,10 @@
     cursor: pointer;
 }
 
-/* 모달 백드롭 - 배경 흐림 효과 추가 */
+.cart-btn:hover{
+    background-color: #b6cc8e;
+}
+
 .rating-modal-backdrop {
     position: fixed;
     top: 0;
@@ -93,7 +96,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px); /* 배경 살짝 흐리게 */
+    backdrop-filter: blur(2px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,7 +104,6 @@
     animation: fadeIn 0.2s ease-out;
 }
 
-/* 모달 본체 - 그림자와 라운드 강조 */
 .rating-modal {
     background: #fff;
     padding: 30px;
@@ -124,14 +126,12 @@
     color: #777;
 }
 
-/* 점수 버튼 그룹 */
 .rating-button-group {
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px;
 }
 
-/* 개별 점수 버튼 */
 .rating-score-btn {
     width: 45px;
     height: 45px;

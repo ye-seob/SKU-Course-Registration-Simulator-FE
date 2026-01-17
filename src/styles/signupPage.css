@@ -64,12 +64,22 @@
     align-items: center;
 }
 
-.plus-icon {
-    font-size: 8px;
-    color: white;
-    margin-right: 8px;
+.terms-box {
+    margin: 16px 0;
+    font-size: 13px;
+    color: #555;
 }
 
+.terms-label {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.terms-label input {
+    margin-top: 3px;
+}
 .section-title {
     font-size: 0.85rem;
     font-weight: 700;
