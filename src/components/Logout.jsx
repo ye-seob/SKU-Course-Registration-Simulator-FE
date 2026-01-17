@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/logout.css';
 import useUserStore from "../store/userStore.js";
 import {useNavigate} from "react-router-dom";
+import {LuDoorOpen} from "react-icons/lu";
 
 const Logout = () => {
     const { setUser } = useUserStore();
@@ -20,7 +21,7 @@ const Logout = () => {
     return (
         <div className="logout-container">
             <div className="logout-header">
-                <span className="door">ㅁ</span>
+                <span className="door"><LuDoorOpen /></span>
                 <button className="logout-btn" onClick={handleLogout}>
                     로그아웃
                 </button>
