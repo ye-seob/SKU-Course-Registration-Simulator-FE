@@ -2,9 +2,11 @@ import React from 'react';
 import '../styles/userInfo.css';
 import useUserStore from '../store/userStore';
 
+const userUrl = "/image/userIcon.jpg";
+
 const UserInfo = () => {
     const userData = useUserStore((state) => state.user);
-
+    cons
     const infoItems = [
         { label: '년 도', value: '2026년 1학기' },
         { label: '학 번', value: userData?.studentId || '정보 없음' },
@@ -19,7 +21,7 @@ const UserInfo = () => {
     return (
         <div className="user-info-container">
             <div className="user-info-header">
-                <span className="user-icon">🧑‍💻</span>
+                <span className="user-icon">  <img src={userUrl} alt="userIcon" className="user-icon-img"/></span>
                 <span className="user-title">사용자정보</span>
             </div>
 

@@ -13,9 +13,13 @@
     align-items: center;
 }
 
-.user-icon {
+
+.user-icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    margin-top: 5px ;
     margin-right: 5px;
-    font-size: 0.9em;
 }
 
 .user-title {
