@@ -13,16 +13,20 @@
     align-items: center;
 }
 
-.user-icon {
+
+.user-icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    margin-top: 5px ;
     margin-right: 5px;
-    font-size: 0.9em;
 }
 
 .user-title {
     font-size: 0.85em;
     font-weight: 600;
     color: white;
-    margin-top: 10px;
+
 }
 
 .user-details-list {

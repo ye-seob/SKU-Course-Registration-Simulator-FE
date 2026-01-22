@@ -109,7 +109,7 @@ const MyLectureList = () => {
             <div className="cart-table-container">
                 <table className="cartList-table">
                     <colgroup>
-                        <col style={{ width: "140px" }} />
+                        <col style={{ width: "100px" }} />
                         <col style={{ width: "250px" }} />
                         <col style={{ width: "100px" }} />
                         <col style={{ width: "65px" }} />
@@ -119,7 +119,7 @@ const MyLectureList = () => {
                         <col style={{ width: "100px" }} />
                         <col style={{ width: "120px" }} />
                         <col style={{ width: "150px" }} />
-                        <col style={{ width: "auto" }} />
+                        <col style={{ width: "60px" }} />
                     </colgroup>
 
                     <thead>

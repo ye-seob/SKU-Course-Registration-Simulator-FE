@@ -1,11 +1,13 @@
 .cart-wrapper {
-    width: 1200px;
+    width: 100%;
+    overflow-x: auto;
+    height: 50vh;
     padding: 10px;
     box-sizing: border-box;
 }
 
 .cart-info-bar {
-    width: 1000px;
+    width: 100%;
     display: flex;
     align-items: center;
     color: #4a6fa5;
@@ -29,21 +31,20 @@
 
 .cart-table-container {
     width: 100%;
+    overflow-y: auto;
 }
 
 .cartList-table {
-    width: 1180px;
-
-
+    width: 100%;
+    min-width: 1300px;
+    min-height: 100%;
     table-layout: fixed;
-
     border-collapse: collapse;
     font-size: 9px;
     text-align: center;
 }
 
-.cartList-table thead tr,
-.cartList-table tbody tr {
+.cartList-table thead tr, .cartList-table tbody tr {
     height: 25px;
 }
 
@@ -53,7 +54,6 @@
     font-weight: bold;
     color: #333;
     height: 30px;
-
 
     white-space: nowrap;
     overflow: hidden;

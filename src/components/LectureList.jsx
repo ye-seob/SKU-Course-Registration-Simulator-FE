@@ -84,6 +84,7 @@ const LectureList = () => {
 
             <div className="lecture-table-container">
                 <table className="lecture-table">
+
                     <colgroup>
                         <col style={{ width: "110px" }} />
                         <col style={{ width: "25px" }} />
@@ -103,7 +104,6 @@ const LectureList = () => {
                         <col style={{ width: "100px" }} />
                         <col style={{ width: "60px" }} />
                     </colgroup>
-
                     <thead>
                     <tr>
                         <th>{config.label}</th>

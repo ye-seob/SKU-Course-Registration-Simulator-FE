@@ -12,13 +12,33 @@ const Signup = () => {
 
     const [agree, setAgree] = useState(false);
     const [formData, setFormData] = useState({
-        studentId: "", name: "", password: "", passwordConfirm: "", major: "소프트웨어학과", grade: "1"
+        studentId: "",
+        name: "",
+        password: "",
+        passwordConfirm: "",
+        college: MAJOR[0].college,
+        major: MAJOR[0].name,
+        grade: "1"
     });
 
+
+
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        setFormData(prev => ({...prev, [name]: value}));
+        const { name, value } = e.target;
+
+        if (name === "college") {
+            const firstMajor = MAJOR.find(m => m.college === value)?.name || "";
+            setFormData(prev => ({
+                ...prev,
+                college: value,
+                major: firstMajor
+            }));
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }));
+        }
     };
+    const filteredMajors = MAJOR.filter(m => m.college === formData.college);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -110,14 +130,26 @@ const Signup = () => {
 
                     <div className="section-divider">정보</div>
 
+                    {/* 단과대 선택 */}
+                    <div className="input-box full-width">
+                        <label>단과대</label>
+                        <select name="college" value={formData.college} onChange={handleChange}>
+                            {[...new Set(MAJOR.map(m => m.college))].map(college => (
+                                <option key={college} value={college}>{college}</option>
+                            ))}
+                        </select>
+                    </div>
+
+
                     <div className="input-box full-width">
                         <label>학과(주전공)</label>
                         <select name="major" value={formData.major} onChange={handleChange}>
-                            {MAJOR.map(major => (<option key={major} value={major}>
-                                    {major}
-                                </option>))}
+                            {filteredMajors.map(m => (
+                                <option key={m.name} value={m.name}>{m.name}</option>
+                            ))}
                         </select>
                     </div>
+
 
 
                     <div className="input-box full-width">
