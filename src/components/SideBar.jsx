@@ -79,7 +79,7 @@ const SideBar = ({onRefresh}) => {
                     <CustomButton text="타학과 교과목" />
 
                     <CustomDropdown
-                        options={MAJOR}
+                        options={MAJOR.map(m => m.name)}
                         placeholder="-- 타학과 선택 --"
                         onChange={(value) => handleClick(value, "")}
                     />
