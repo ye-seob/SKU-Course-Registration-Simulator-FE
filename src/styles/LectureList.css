@@ -3,7 +3,6 @@
     height: 50vh;
     padding: 10px;
     box-sizing: border-box;
-    overflow-x: auto;
 }
 
 .lectureList-info-bar {
