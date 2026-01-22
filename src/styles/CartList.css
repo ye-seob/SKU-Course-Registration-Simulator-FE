@@ -6,7 +6,6 @@
     box-sizing: border-box;
     margin-top: 30px;
 }
-
 .cart-info-bar {
     width: 100%;
     display: flex;
@@ -15,6 +14,13 @@
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 10px;
+    position: relative;
+    height: 30px;
+}
+
+.cart-info-left {
+    display: flex;
+    align-items: center;
 }
 
 .cart-info-left .info-desc {
@@ -22,9 +28,21 @@
     margin-left: 10px;
 }
 
+
 .cart-info-right {
-    margin-left: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
+    white-space: nowrap;
 }
+
+
+.cart-info-left .info-desc {
+    color: #666;
+    margin-left: 10px;
+}
+
 
 .highlight-num {
     color: #d14d4d;
@@ -91,4 +109,20 @@
 }
 .delete-btn:hover{
     background-color: #b6cc8e;
+}
+/* ... 기존 코드 ... */
+
+
+@media screen and (max-width: 1200px) {
+    .cart-info-bar {
+        justify-content: space-between;
+    }
+
+    .cart-info-right {
+        position: static;
+        transform: none;
+        left: auto;
+        
+        margin-left: 10px;
+    }
 }
