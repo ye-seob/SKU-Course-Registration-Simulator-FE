@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {rateLecture} from '../api/lecture.js';
 import {toast} from "react-toastify";
 
-const LectureRow = ({ lecture, actionLabel, onAction }) => {
+const LectureRow = ({ lecture, actionLabel, onAction ,index}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleRatingClick = async (score) => {
@@ -39,10 +39,10 @@ const LectureRow = ({ lecture, actionLabel, onAction }) => {
                         {actionLabel}
                     </button>
                 </td>
-                <td>{lecture.lectureId}</td>
+                <td>{index + 1}</td>
                 <td className="text-left">{lecture.lectureName}</td>
                 <td>{lecture.lectureCode}</td>
-                <td>{lecture.classNumber}</td>
+                <td>0{lecture.classNumber}</td>
                 <td>{lecture.type}</td>
                 <td>{lecture.credit.toFixed(2)}</td>
                 <td>{lecture.time.toFixed(2)}</td>

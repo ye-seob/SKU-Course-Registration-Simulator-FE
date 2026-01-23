@@ -21,7 +21,7 @@ const MyLectureRow = ({lecture, actionLabel, onAction}) => {
 
                 <td className="text-left">{lecture.lectureName}</td>
                 <td>{lecture.lectureCode}</td>
-                <td>{lecture.classNumber}</td>
+                <td>0{lecture.classNumber}</td>
                 <td>{lecture.type}</td>
                 <td>{lecture.credit.toFixed(2)}</td>
                 <td>{lecture.time.toFixed(2)}</td>

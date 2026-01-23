@@ -128,7 +128,7 @@ const LectureList = () => {
 
                     <tbody>
                     {lectures.length > 0 ? (
-                        lectures.map((lecture) => (
+                        lectures.map((lecture,index) => (
                             <LectureRow
                                 key={lecture.lectureId}
                                 lecture={lecture}
@@ -136,6 +136,7 @@ const LectureList = () => {
                                 onAction={() =>
                                     handleAction(lecture.lectureId)
                                 }
+                                index = {index}
                             />
                         ))
                     ) : (
