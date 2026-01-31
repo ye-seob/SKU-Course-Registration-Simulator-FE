@@ -8,7 +8,6 @@ const loginBtnUrl = "/image/login.gif";
 
 const Login = () => {
     const [studentId, setStudentId] = useState("");
-    const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     const [remainTime, setRemainTime] = useState("");
@@ -89,8 +88,7 @@ const Login = () => {
                             <input
                                 type="password"
                                 className="input-field"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                disabled
                             />
                         </div>
                     </div>
@@ -116,8 +114,7 @@ const Login = () => {
                         ※ 본 서비스는 개인 개발자가 운영하는 비공식 모의 서비스입니다.
                     </div>
                     <div className="warning-text">
-                        ※ 최초수강신청하는 신·편입생의 경우 반드시 포탈 로그인 후 <br/>
-                        이용하시기 바랍니다.
+                        가입된 학번과 닉네임은 수강신청 종료 후 폐기 예정입니다.
                     </div>
                 </div>
             </main>

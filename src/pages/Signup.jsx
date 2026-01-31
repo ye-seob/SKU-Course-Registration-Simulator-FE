@@ -14,8 +14,6 @@ const Signup = () => {
     const [formData, setFormData] = useState({
         studentId: "",
         name: "",
-        password: "",
-        passwordConfirm: "",
         college: MAJOR[0].college,
         major: MAJOR[0].name,
         grade: "1"
@@ -48,10 +46,6 @@ const Signup = () => {
                 return;
             }
 
-            if (formData.password !== formData.passwordConfirm) {
-                toast.error("비밀번호가 일치하지 않습니다.");
-                return;
-            }
 
             await signup(formData);
             navigate('/login');
@@ -86,18 +80,18 @@ const Signup = () => {
                             <input
                                 type="text"
                                 name="studentId"
-                                placeholder="학번을 입력하세요"
+                                placeholder="학번을 입력하세요(숫자)"
                                 value={formData.studentId}
                                 onChange={handleChange}
                                 required
                             />
                         </div>
                         <div className="input-box">
-                            <label>이름</label>
+                            <label>닉네임</label>
                             <input
                                 type="text"
                                 name="name"
-                                placeholder="이름을 입력하세요"
+                                placeholder="닉네임을 입력하세요"
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
@@ -105,28 +99,6 @@ const Signup = () => {
                         </div>
                     </div>
 
-                    <div className="input-box full-width">
-                        <label>비밀번호</label>
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="비밀번호를 입력해주세요"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div className="input-box full-width">
-                        <label>비밀번호 확인</label>
-                        <input
-                            type="password"
-                            name="passwordConfirm"
-                            placeholder="비밀번호를 다시 입력해주세요"
-                            value={formData.passwordConfirm}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
 
                     <div className="section-divider">정보</div>
 
