@@ -21,17 +21,15 @@ const Login = () => {
 
             let targetTime = new Date(now);
 
-            // 15시 이후 → 다음날 08시
-            if (hour >= 15) {
+            if (hour < 8) {
+                // 08시 이전 → 오늘 08시
+                targetTime.setHours(8, 0, 0, 0);
+            } else if (hour >= 18) {
+                // 18시 이후 → 다음날 08시
                 targetTime.setDate(targetTime.getDate() + 1);
                 targetTime.setHours(8, 0, 0, 0);
-            }
-            // 08시 이전 → 당일 08시
-            else if (hour < 8) {
-                targetTime.setHours(8, 0, 0, 0);
-            }
-            // 08 ~ 14시 → 다음 정각
-            else {
+            } else {
+                // 08 ~ 17시 → 다음 정각
                 targetTime.setHours(hour + 1, 0, 0, 0);
             }
 

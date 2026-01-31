@@ -62,7 +62,12 @@ const SideBar = ({onRefresh}) => {
 
                     <CustomButton
                         text="공통 교양"
-                        onClick={() => handleClick("", "교선")}
+                        onClick={() => handleClick(
+                            "",
+                            (user?.college === "미래융합학부1" || user?.college === "미래융합학부2")
+                                ? "미융교선"
+                                : "교선"
+                        )}
                     />
 
                     <CustomDropdown
