@@ -49,13 +49,13 @@ const Login = () => {
         updateRemainTime();
         const timer = setInterval(updateRemainTime, 1000);
         return () => clearInterval(timer);
-    }, []);
+ƒ    }, []);
 
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            await login({studentId, password});
+            await login({studentId,});
             navigate('/');
         } catch (e) {
             alert(e.response?.data?.message || "로그인 중 오류가 발생했습니다.");
