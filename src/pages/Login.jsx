@@ -23,12 +23,12 @@ const Login = () => {
             if (hour < 8) {
                 // 08시 이전 → 오늘 08시
                 targetTime.setHours(8, 0, 0, 0);
-            } else if (hour >= 18) {
-                // 18시 이후 → 다음날 08시
+            } else if (hour >= 22) {
+                // 22시 이후 → 다음날 08시
                 targetTime.setDate(targetTime.getDate() + 1);
                 targetTime.setHours(8, 0, 0, 0);
             } else {
-                // 08 ~ 17시 → 다음 정각
+                // 08 ~ 22시 → 다음 정각
                 targetTime.setHours(hour + 1, 0, 0, 0);
             }
 
@@ -121,7 +121,7 @@ const Login = () => {
 
             <footer className="external-warning-container">
                 <div className="external-text">
-                    ※ 하나의 인터넷창으로만 수강신청 하실 수 있습니다. 유의하시기 바랍니다.
+                    ※ 강의의 평점 부분을 클릭하시면 평점을 매길 수 있습니다.
                 </div>
                 <div className="external-text">
                     ※ wifi로 접속하여 스마트폰이나 노트북으로 수강신청시 통신이나 보안규약에<br/>
