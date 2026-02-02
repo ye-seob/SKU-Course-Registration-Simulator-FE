@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import '../styles/login.css';
 import {login} from "../api/login.js";
 import {useNavigate} from "react-router-dom";
+import useViewStore from "../store/viewStore.js";
 
 const logoUrl = "/image/logo.gif";
 const loginBtnUrl = "/image/login.gif";
@@ -12,7 +13,8 @@ const Login = () => {
 
     const [remainTime, setRemainTime] = useState("");
     const [nextOpenTime, setNextOpenTime] = useState("");
-
+    const [loginMode, setLoginMode] = useState("ENROLL");
+    const setMode = useViewStore((state) => state.setMode);
     useEffect(() => {
         const updateRemainTime = () => {
             const now = new Date();
@@ -57,6 +59,8 @@ const Login = () => {
         try {
             await login({studentId,});
             navigate('/');
+            setMode(loginMode);
+            localStorage.setItem("loginMode", "ENROLL");
         } catch (e) {
             alert(e.response?.data?.message || "로그인 중 오류가 발생했습니다.");
         }
@@ -64,6 +68,32 @@ const Login = () => {
 
     return (
         <div className="login-container">
+
+            <div className="login-mode-wrapper">
+                <div className="login-mode-title">
+                    이용하실 서비스를 선택해 주세요
+                </div>
+
+                <div className="login-mode-selector">
+                    <button
+                        type="button"
+                        className={`mode-card ${loginMode === "ENROLL" ? "active" : ""}`}
+                        onClick={() => setLoginMode("ENROLL")}
+                    >
+                        <div className="mode-main">수강신청</div>
+                        <div className="mode-sub">수강신청 연습</div>
+                    </button>
+
+                    <button
+                        type="button"
+                        className={`mode-card ${loginMode === "CART" ? "active" : ""}`}
+                        onClick={() => setLoginMode("CART")}
+                    >
+                        <div className="mode-main">장바구니</div>
+                        <div className="mode-sub">강의 담아보기</div>
+                    </button>
+                </div>
+            </div>
             <header className="login-header">
                 <div className="logo-area">
                     <img src={logoUrl} alt="서경대학교 SEOKYEONG UNIVERSITY" className="logo-img"/>

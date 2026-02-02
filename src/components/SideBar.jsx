@@ -8,25 +8,15 @@ import Logout from "./Logout.jsx";
 import {MAJOR, TYPE} from "../utils/constant.js";
 import useUserStore from "../store/userStore.js";
 import useSearchStore from "../store/searchStore.js";
-import useViewStore from "../store/viewStore.js";
 
 const SideBar = ({onRefresh}) => {
     const { user } = useUserStore();
     const { setMajor, setType, setIsCart , setKeyword} = useSearchStore();
-    const { mode, setMode } = useViewStore();
     const logoUrl = "/image/logo.gif";
-
-
-    const ToEnroll = () => {
-        if (mode === "HOME") {
-            setMode("ENROLL");
-        }
-    };
 
 
     const handleClick = async (newMajor, newType, cart = false) => {
 
-        ToEnroll();
         setMajor(newMajor);
         setKeyword("");
         setType(newType);
@@ -42,7 +32,6 @@ const SideBar = ({onRefresh}) => {
                     src={logoUrl}
                     alt="서경대학교 로고"
                     className="logo-image"
-                    onClick={() => setMode("HOME")}
                 />
             </div>
 

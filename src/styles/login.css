@@ -180,3 +180,59 @@
 .guide-link:hover {
     transform: translateY(-2px);
 }
+
+.login-mode-wrapper {
+    width: 75%;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.login-mode-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3b5e96;
+    margin-bottom: 10px;
+}
+
+.login-mode-selector {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+
+.mode-card {
+    width: 200px;
+    height: 90px;
+    border: 3px solid #3b5e96;
+    background-color: #ffffff;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.2s ease;
+}
+
+.mode-main {
+    font-size: 20px;
+    font-weight: 900;
+    color: #3b5e96;
+}
+
+.mode-sub {
+    font-size: 13px;
+    margin-top: 6px;
+    color: #555;
+}
+.mode-card.active {
+    background-color: #3b5e96;
+    box-shadow: 0 6px 12px rgba(59, 94, 150, 0.4);
+}
+
+.mode-card.active .mode-main,
+.mode-card.active .mode-sub {
+    color: #ffffff;
+}
+
+/* 마우스 올렸을 때 */
+.mode-card:hover {
+    transform: translateY(-3px);
+}

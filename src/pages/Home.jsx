@@ -10,16 +10,23 @@ import WarningNotice from "../components/WarningNotice.jsx";
 import useViewStore from "../store/viewStore.js";
 
 const Home = () => {
-    const mode = useViewStore((state) => state.mode);
     const [refreshKey, setRefreshKey] = useState(0);
-    const isHome = mode === 'HOME';
+    const hasSeenIntro = useViewStore((s) => s.hasSeenIntro);
+    const finishIntro = useViewStore((s) => s.finishIntro);
 
-    const topComponent = isHome ? <InfoNotice /> : <LectureList />;
-    const bottomComponent = isHome ? <WarningNotice /> : <MyLectureList />;
+    const showIntro = !hasSeenIntro;
+
+    const topComponent = showIntro ? <InfoNotice /> : <LectureList />;
+    const bottomComponent = showIntro ? <WarningNotice /> : <MyLectureList />;
 
     return (
             <div className="home-container">
-                <SideBar  onRefresh={() => setRefreshKey(prev => prev + 1)} />
+                <SideBar  onRefresh={() => {
+                    {
+                        finishIntro();
+                        setRefreshKey(prev => prev + 1)
+                    }
+                }} />
                 <TwoSectionLayout
                     key={refreshKey}
                     top={topComponent}

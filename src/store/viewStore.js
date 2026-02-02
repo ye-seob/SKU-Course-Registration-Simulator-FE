@@ -4,7 +4,10 @@ import {persist} from "zustand/middleware";
 const useViewStore = create(
     persist(
         (set) => ({
-            mode: "HOME",
+            hasSeenIntro: false,
+            finishIntro: () => set({ hasSeenIntro: true }),
+
+            mode: localStorage.getItem("loginMode") || "ENROLL",
             setMode: (mode) => set({ mode }),
 
             isWaiting: false,
