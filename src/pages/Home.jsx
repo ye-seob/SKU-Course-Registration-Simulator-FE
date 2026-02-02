@@ -23,7 +23,7 @@ const Home = () => {
             <div className="home-container">
                 <SideBar  onRefresh={() => {
                     {
-                        finishIntro();
+                        finishIntro(true);
                         setRefreshKey(prev => prev + 1)
                     }
                 }} />

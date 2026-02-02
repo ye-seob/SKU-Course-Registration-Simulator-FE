@@ -5,7 +5,7 @@ const useViewStore = create(
     persist(
         (set) => ({
             hasSeenIntro: false,
-            finishIntro: () => set({ hasSeenIntro: true }),
+            finishIntro: (value) => set({ hasSeenIntro: value }),
 
             mode: localStorage.getItem("loginMode") || "ENROLL",
             setMode: (mode) => set({ mode }),
