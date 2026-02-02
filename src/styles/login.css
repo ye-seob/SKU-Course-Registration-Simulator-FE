@@ -176,13 +176,13 @@
     transition: all 0.3s ease;
 }
 
-/* 버튼 호버 효과 */
 .guide-link:hover {
     transform: translateY(-2px);
 }
 
 .login-mode-wrapper {
     width: 75%;
+    margin-top: 130px;
     margin-bottom: 15px;
     text-align: center;
 }

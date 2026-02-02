@@ -17,6 +17,7 @@ const useViewStore = create(
             name: "view-storage",
             partialize: (state) => ({
                 mode: state.mode,
+                hasSeenIntro: state.hasSeenIntro,
             }),
         }
     )
