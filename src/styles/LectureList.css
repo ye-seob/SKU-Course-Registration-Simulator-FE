@@ -78,6 +78,36 @@
 .cart-btn:hover{
     background-color: #b6cc8e;
 }
+.rating-cell {
+    position: relative;
+    cursor: pointer;
+    overflow: visible !important;
+}
+
+.rating-tooltip {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    font-size: 10px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    z-index: 9999;
+}
+
+.rating-tooltip::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.65) transparent;
+}
 
 .rating-modal-backdrop {
     position: fixed;

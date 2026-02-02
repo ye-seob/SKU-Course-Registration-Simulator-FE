@@ -1,20 +1,36 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {rateLecture} from '../api/lecture.js';
 import {toast} from "react-toastify";
 
 const LectureRow = ({ lecture, actionLabel, onAction ,index}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [showHint, setShowHint] = useState(false);
+    const STORAGE_KEY = "ratingTooltip";
+
+    useEffect(() => {
+        if (index === 0 && !localStorage.getItem(STORAGE_KEY)) {
+            setShowHint(true);
+        }
+    }, [index]);
+
+    const hideHintForever = () => {
+        localStorage.setItem(STORAGE_KEY, "true");
+        setShowHint(false);
+
+    };
 
     const handleRatingClick = async (score) => {
         try {
             await rateLecture(lecture.lectureId, score);
             toast.success(`${score}점이 등록되었습니다.`);
             setIsModalOpen(false);
+            hideHintForever()
         } catch (error) {
-            toast.error("평점 등록 실패")
+            toast.error("평점 등록 실패");
             setIsModalOpen(false);
+            hideHintForever()
         }
-    };
+    }
 
     let schedule = "";
     try {
@@ -54,11 +70,22 @@ const LectureRow = ({ lecture, actionLabel, onAction ,index}) => {
 
                 <td
                     className="rating-cell"
-                    onClick={() => setIsModalOpen(true)}
-                    style={{ cursor: 'pointer'}}
+                    onClick={() => {
+                        setIsModalOpen(true);
+                        hideHintForever();
+                    }}
                 >
                     {lecture.rating.toFixed(1)}
+
+                    {index === 0 && showHint && (
+                        <div className="rating-tooltip">
+                            여기를 클릭해서<br />평점을 등록해보세요
+                        </div>
+                    )}
                 </td>
+
+
+
 
                 <td className="text-left">{lecture.room}</td>
                 <td className="text-left">{schedule}</td>
