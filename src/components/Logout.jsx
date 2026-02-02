@@ -12,10 +12,15 @@ const Logout = () => {
         const confirmed = window.confirm("로그아웃 하시겠습니까?");
         if (!confirmed) return;
 
+
         localStorage.clear();
 
         setUser(null);
+
+
         navigate("/login");
+
+        window.location.reload();
     };
 
     return (
