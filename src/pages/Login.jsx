@@ -15,6 +15,7 @@ const Login = () => {
     const [nextOpenTime, setNextOpenTime] = useState("");
     const [loginMode, setLoginMode] = useState("ENROLL");
     const setMode = useViewStore((state) => state.setMode);
+    const finishIntro = useViewStore((s) => s.finishIntro);
     useEffect(() => {
         const updateRemainTime = () => {
             const now = new Date();
@@ -57,7 +58,9 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            await login({studentId,});
+            finishIntro(false)
+            await login({studentId,loginMode});
+
             navigate('/');
             setMode(loginMode);
             localStorage.setItem("loginMode", "ENROLL");
