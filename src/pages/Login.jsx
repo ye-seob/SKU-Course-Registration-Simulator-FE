@@ -157,9 +157,8 @@ const Login = () => {
                     ※ 강의의 평점 부분을 클릭하시면 평점을 매길 수 있습니다.
                 </div>
                 <div className="external-text">
-                    ※ wifi로 접속하여 스마트폰이나 노트북으로 수강신청시 통신이나 보안규약에<br/>
-                    문제가 생겨 정상적인 수강신청 처리가 안될 수 있으니 PC에서 수강신청하시기<br/>
-                    바랍니다.
+                    ※ 08시부터 22시까지 <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#333' }}>정각</span>에 수강신청 로그인을 하시면 실제처럼 대기열이 발생하며<br/>
+                    실제 수강신청과 유사한 환경에서 이용하실 수 있습니다
                 </div>
             </footer>
 
