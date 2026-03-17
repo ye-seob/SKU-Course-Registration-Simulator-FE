@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import '../styles/Search.css';
 import useSearchStore from "../store/searchStore.js";
-import useLectureStore from "../store/lectureStore.js";
-import {getLectures} from "../api/getLectures.js";
+import useLectureStore from "../../lecture/store/lectureStore.js";
+import {search} from "../api/search.js";
 
 const Search = () => {
     const [searchKeyword, setSearchKeyword] = useState("");
@@ -19,7 +19,7 @@ const Search = () => {
         setKeyword(searchKeyword);
 
         try {
-            const response =  await getLectures(searchKeyword, "", "");
+            const response =  await search(searchKeyword, "", "");
             setLectures(response)
         } catch (err) {
             console.error("검색 실패", err);

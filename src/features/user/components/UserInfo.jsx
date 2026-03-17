@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/userInfo.css';
-import useUserStore from '../store/userStore';
+import useUserStore from '../store/userStore.js';
 
 const userUrl = "/image/userIcon.jpg";
 

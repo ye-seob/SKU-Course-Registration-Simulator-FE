@@ -1,16 +1,16 @@
 import React, {useEffect} from "react";
 import "../styles/LectureList.css";
 import LectureRow from "./LectureRow.jsx";
-import WaitingView from "./WaitingView.jsx";
+import WaitingView from "../../enrollment/components/WaitingView.jsx";
 
-import useViewStore from "../store/viewStore.js";
+import useViewStore from "../../view/store/viewStore.js";
 import useLectureStore from "../store/lectureStore.js";
-import useSearchStore from "../store/searchStore.js";
-import useCartStore from "../store/cartStore.js";
+import useSearchStore from "../../search/store/searchStore.js";
+import useCartStore from "../../cart/store/cartStore.js";
 
-import {getLectures} from "../api/getLectures.js";
-import {addCart, getCart} from "../api/cart.js";
-import useQueueSocket from "../utils/useQueueSocket.js";
+import {search} from "../../search/api/search.js";
+import {addCart, getCart} from "../../cart/api/cart.js";
+import useQueueSocket from "../../enrollment/hooks/useQueueSocket.js";
 
 const LectureList = () => {
     const { mode, isWaiting, setWaiting } = useViewStore();
@@ -25,7 +25,7 @@ const LectureList = () => {
                 const data = await getCart();
                 setLectures(data);
             } else {
-                const data = await getLectures(keyword, major, type);
+                const data = await search(keyword, major, type);
 
                 setLectures(data);
             }

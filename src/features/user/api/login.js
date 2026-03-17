@@ -1,7 +1,7 @@
 // login.js
-import api from '../api/axiosInstance.js';
+import api from '../../../shared/api/axiosInstance.js';
 import useUserStore from '../store/userStore.js';
-import useViewStore from "../store/viewStore.js";
+import useViewStore from "../../view/store/viewStore.js";
 
 export const login = async (loginData) => {
     const setUser = useUserStore.getState().setUser;

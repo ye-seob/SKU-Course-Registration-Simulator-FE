@@ -1,6 +1,6 @@
-import api from "../api/axiosInstance.js";
+import api from "../../../shared/api/axiosInstance.js";
 
-export const getLectures = async (keyword, major ,type) => {
+export const search = async (keyword, major , type) => {
     try {
         const response = await api.get("/lectures", {
             params: {

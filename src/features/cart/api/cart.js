@@ -1,4 +1,4 @@
-import api from "../api/axiosInstance.js";
+import api from "../../../shared/api/axiosInstance.js";
 
 // 장바구니 조회
 export const getCart = async () => {

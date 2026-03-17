@@ -3,7 +3,7 @@ import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 
 
-import useViewStore from "../store/viewStore";
+import useViewStore from "../../view/store/viewStore.js";
 
 
 const useQueueSocket = (onRefresh) => {

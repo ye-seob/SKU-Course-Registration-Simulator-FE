@@ -1,4 +1,4 @@
-import api from "../api/axiosInstance.js";
+import api from "../../../shared/api/axiosInstance.js";
 
 // 수강신청 조회
 export const getEnrollments = async () => {

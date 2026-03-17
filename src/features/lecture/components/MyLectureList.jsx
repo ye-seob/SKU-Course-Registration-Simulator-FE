@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
-import "../styles/CartList.css";
+import "../../cart/styles/CartList.css";
 import MyLectureRow from "./MyLectureRow.jsx";
-import useViewStore from "../store/viewStore.js";
-import useCartStore from "../store/cartStore.js";
-import {deleteCart, getCart} from "../api/cart.js";
-import {cancelEnrollment, getEnrollments} from "../api/enrollment.js";
-import useEnrollmentStore from "../store/enrollmentStore.js";
+import useViewStore from "../../view/store/viewStore.js";
+import useCartStore from "../../cart/store/cartStore.js";
+import {deleteCart, getCart} from "../../cart/api/cart.js";
+import {cancelEnrollment, getEnrollments} from "../../enrollment/api/enrollment.js";
+import useEnrollmentStore from "../../enrollment/store/enrollmentStore.js";
 
 
 const MyLectureList = () => {

@@ -1,4 +1,4 @@
-import api from "../api/axiosInstance.js";
+import api from "../../../shared/api/axiosInstance.js";
 
 export const rateLecture = async (lectureId, score) => {
     try {
