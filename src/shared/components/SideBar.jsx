@@ -1,13 +1,13 @@
 import React from 'react';
-import UserInfo from './UserInfo.jsx';
+import UserInfo from '../../features/user/components/UserInfo.jsx';
 import CustomButton from './CustomButton.jsx';
 import CustomDropdown from './CustomDropdown.jsx';
 import '../styles/SideBar.css';
-import Search from "./Search.jsx";
-import Logout from "./Logout.jsx";
-import {MAJOR, TYPE} from "../utils/constant.js";
-import useUserStore from "../store/userStore.js";
-import useSearchStore from "../store/searchStore.js";
+import Search from "../../features/search/components/Search.jsx";
+import Logout from "../../features/user/components/Logout.jsx";
+import {MAJOR, TYPE} from "../util/constant.js";
+import useUserStore from "../../features/user/store/userStore.js";
+import useSearchStore from "../../features/search/store/searchStore.js";
 
 const SideBar = ({onRefresh}) => {
     const { user } = useUserStore();
