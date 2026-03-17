@@ -1,5 +1,5 @@
 import React from "react";
-import Router from "./routes/Router.jsx";
+import Router from "./Router.jsx";
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
