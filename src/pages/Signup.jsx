@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import '../styles/signupPage.css';
-import {MAJOR} from "../utils/constant.js";
-import {signup} from "../api/signup.js";
+import '../features/user/styles/signupPage.css';
+import {MAJOR} from "../shared/util/constant.js";
+import {signup} from "../features/user/api/signup.js";
 import {useNavigate} from "react-router-dom";
 import {toast} from 'react-toastify';
 

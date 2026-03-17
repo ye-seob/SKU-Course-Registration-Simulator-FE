@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import '../styles/login.css';
-import {login} from "../api/login.js";
+import '../features/user/styles/login.css';
+import {login} from "../features/user/api/login.js";
 import {useNavigate} from "react-router-dom";
-import useViewStore from "../store/viewStore.js";
+import useViewStore from "../features/view/store/viewStore.js";
 
 const logoUrl = "/image/logo.gif";
 const loginBtnUrl = "/image/login.gif";
