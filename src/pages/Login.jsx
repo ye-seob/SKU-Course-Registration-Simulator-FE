@@ -71,32 +71,6 @@ const Login = () => {
 
     return (
         <div className="login-container">
-
-            <div className="login-mode-wrapper">
-                <div className="login-mode-title">
-                    이용하실 서비스를 선택해 주세요
-                </div>
-
-                <div className="login-mode-selector">
-                    <button
-                        type="button"
-                        className={`mode-card ${loginMode === "ENROLL" ? "active" : ""}`}
-                        onClick={() => setLoginMode("ENROLL")}
-                    >
-                        <div className="mode-main">수강신청</div>
-                        <div className="mode-sub">수강신청 연습</div>
-                    </button>
-
-                    <button
-                        type="button"
-                        className={`mode-card ${loginMode === "CART" ? "active" : ""}`}
-                        onClick={() => setLoginMode("CART")}
-                    >
-                        <div className="mode-main">장바구니</div>
-                        <div className="mode-sub">강의 담아보기</div>
-                    </button>
-                </div>
-            </div>
             <header className="login-header">
                 <div className="logo-area">
                     <img src={logoUrl} alt="서경대학교 SEOKYEONG UNIVERSITY" className="logo-img"/>

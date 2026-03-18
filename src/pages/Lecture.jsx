@@ -9,7 +9,7 @@ import WarningNotice from "../shared/components/WarningNotice.jsx";
 
 import useViewStore from "../features/view/store/viewStore.js";
 
-const Home = () => {
+const Lecture = () => {
     const [refreshKey, setRefreshKey] = useState(0);
     const hasSeenIntro = useViewStore((s) => s.hasSeenIntro);
     const finishIntro = useViewStore((s) => s.finishIntro);
@@ -36,4 +36,4 @@ const Home = () => {
     )
 };
 
-export default Home;
+export default Lecture;

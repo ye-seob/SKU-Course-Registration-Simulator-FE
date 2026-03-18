@@ -1,15 +1,17 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 
-import Home from '../pages/Home.jsx';
+import Lecture from '../pages/Lecture.jsx';
 import Signup from "../pages/Signup.jsx";
 import Login from "../pages/Login.jsx";
+import Landing from "../pages/Landing.jsx";
 
 const Router = () => {
     return (
         <Routes>
             {/* 메인 경로 (/) */}
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Lecture />} />
+            <Route path="/home" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
 
