@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import SideBar from "../components/SideBar.jsx";
-import "../styles/home.css";
-import TwoSectionLayout from "../components/Layout";
-import LectureList from "../components/LectureList.jsx";
-import MyLectureList from "../components/MyLectureList.jsx";
-import InfoNotice from "../components/InfoNotice.jsx";
-import WarningNotice from "../components/WarningNotice.jsx";
+import SideBar from "../shared/components/SideBar.jsx";
+import "../shared/styles/home.css";
+import TwoSectionLayout from "../shared/components/Layout.jsx";
+import LectureList from "../features/lecture/components/LectureList.jsx";
+import MyLectureList from "../features/lecture/components/MyLectureList.jsx";
+import InfoNotice from "../shared/components/InfoNotice.jsx";
+import WarningNotice from "../shared/components/WarningNotice.jsx";
 
-import useViewStore from "../store/viewStore.js";
+import useViewStore from "../features/view/store/viewStore.js";
 
 const Home = () => {
     const [refreshKey, setRefreshKey] = useState(0);
