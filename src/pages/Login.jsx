@@ -3,6 +3,7 @@ import '../features/user/styles/login.css';
 import {login} from "../features/user/api/login.js";
 import {useNavigate} from "react-router-dom";
 import useViewStore from "../features/view/store/viewStore.js";
+import {useMode} from "../mode/hooks/useMode.js";
 
 const logoUrl = "/image/logo.gif";
 const loginBtnUrl = "/image/login.gif";
@@ -10,11 +11,11 @@ const loginBtnUrl = "/image/login.gif";
 const Login = () => {
     const [studentId, setStudentId] = useState("");
     const navigate = useNavigate();
+    const {config , mode} = useMode();
 
     const [remainTime, setRemainTime] = useState("");
     const [nextOpenTime, setNextOpenTime] = useState("");
-    const [loginMode, setLoginMode] = useState("ENROLL");
-    const setMode = useViewStore((state) => state.setMode);
+
     const finishIntro = useViewStore((s) => s.finishIntro);
     useEffect(() => {
         const updateRemainTime = () => {
@@ -52,92 +53,83 @@ const Login = () => {
         updateRemainTime();
         const timer = setInterval(updateRemainTime, 1000);
         return () => clearInterval(timer);
-ƒ    }, []);
+        ƒ
+    }, []);
 
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             finishIntro(false)
-            await login({studentId,loginMode});
+            await login({studentId, loginMode: mode });
 
             navigate('/');
-            setMode(loginMode);
-            localStorage.setItem("loginMode", "ENROLL");
         } catch (e) {
             alert(e.response?.data?.message || "로그인 중 오류가 발생했습니다.");
         }
     };
 
     return (
-        <div className="login-container">
-            <header className="login-header">
-                <div className="logo-area">
-                    <img src={logoUrl} alt="서경대학교 SEOKYEONG UNIVERSITY" className="logo-img"/>
+        <div className="login">
+            <header className="login__header">
+                <div className="login__logo-area">
+                    <img src={logoUrl} alt="서경대학교 SEOKYEONG UNIVERSITY" className="login__logo-img"/>
                 </div>
-                <div className="login-header-title">(서경대 학부 모의 수강신청)</div>
+                <div className="login__title">(서경대 학부 모의 {config.title})</div>
             </header>
 
-            <main className="login-box">
-                <form className="login-form-area" onSubmit={handleLogin}>
-                    <div className="input-group">
-                        <div className="input-row">
-                            <label className="input-label">아이디</label>
+            <main className="login__box">
+                <form className="login__form" onSubmit={handleLogin}>
+                    <div className="login__inputs">
+                        <div className="login__input-row">
+                            <label className="login__label">아이디</label>
                             <input
                                 type="text"
-                                className="input-field"
+                                className="login__input"
                                 value={studentId}
                                 onChange={(e) => setStudentId(e.target.value)}
                             />
                         </div>
-                        <div className="input-row">
-                            <label className="input-label">비밀번호</label>
+                        <div className="login__input-row">
+                            <label className="login__label">비밀번호</label>
                             <input
                                 type="password"
-                                className="input-field"
+                                className="login__input"
                                 disabled
                             />
                         </div>
                     </div>
 
                     {/* 로그인 버튼 */}
-                    <button type="submit" className="btn-img" style={{background: 'none', border: 'none', padding: 0}}>
+                    <button type="submit" className="login__submit"
+                            style={{background: 'none', border: 'none', padding: 0}}>
                         <img src={loginBtnUrl} alt="loginBtn"/>
                     </button>
                 </form>
 
-                <div className="link">
-                    <div
-                        className="signup-link"
-                        onClick={() => navigate('/signup')}
-                        style={{cursor: 'pointer'}}
-                    >
-                        [회원가입]
-                    </div>
+                <div className="login__signup-link"
+                     onClick={() => navigate('/signup')} style={{cursor: 'pointer'}}>
+                    [회원가입]
                 </div>
 
-                <div className="internal-warning">
-                    <div className="warning-text">
+                <div className="login__warning">
+                    <div className="login__warning-text">
                         ※ 본 서비스는 개인 개발자가 운영하는 비공식 모의 서비스입니다.
                     </div>
-                    <div className="warning-text">
+                    <div className="login__warning-text">
                         가입된 학번과 닉네임은 수강신청 종료 후 폐기 예정입니다.
                     </div>
                 </div>
             </main>
 
-            <footer className="external-warning-container">
-                <div className="external-text">
-                    ※ 강의의 평점 부분을 클릭하시면 평점을 매길 수 있습니다.
-                </div>
-                <div className="external-text">
-                    ※ 08시부터 22시까지 <span style={{ fontSize: '1.3em', fontWeight: 'bold', color: '#333' }}>정각</span>에 수강신청 로그인을 하시면 실제처럼 대기열이 발생하며<br/>
-                    실제 수강신청과 유사한 환경에서 이용하실 수 있습니다
+            <footer className="login__footer">
+                <div className="login__warning-text">
+                    {config.description}
                 </div>
             </footer>
 
 
-            <div className="remain-time">
+            <div className="login__remain-time">
                 다음 수강신청 시작까지 남은 시간<br/>
                 <strong>{remainTime}</strong>
             </div>
@@ -146,7 +138,7 @@ const Login = () => {
                 href="https://leather-octopus-0ff.notion.site/2ebbf7b8d39f80d58afffc3749a9f693?pvs=73"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="guide-link"
+                className="login__guide-link"
             >
                 📖 모의 수강신청 가이드 보러가기
             </a>

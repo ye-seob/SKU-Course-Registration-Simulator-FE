@@ -1,15 +1,14 @@
-.login-container {
+.login {
     width: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid red;
 }
 
 /* ========================================
   상단 헤더 영역 (로고 + 우측 텍스트)
   ======================================== */
-.login-header {
+.login__header {
     width: 80%;
     display: flex;
     justify-content: space-between; /* 로고는 왼쪽, 텍스트는 오른쪽 끝으로 배치 */
@@ -18,20 +17,20 @@
     padding: 0 10px;
 }
 
-.logo-area {
+.login__logo-area {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     width: auto;
 }
 
-.logo-img {
+.login__logo-img {
     height: 60px;
     object-fit: contain;
 }
 
 /* 우측 상단 파란색 텍스트 (서경대 학부 수강신청) */
-.login-header-title {
+.login__title {
     color: #3b5e96;
     font-weight: bold;
     font-size: 14px;
@@ -40,7 +39,7 @@
 /* ========================================
   메인 로그인 박스 (파란색 테두리 박스)
   ======================================== */
-.login-box {
+.login__box {
     width: 75%;
     border: 5px solid #3b5e96; /* 두꺼운 파란색 테두리 */
     padding: 30px 0; /* 박스 내부 상하 여백 */
@@ -51,7 +50,7 @@
 }
 
 /* 로그인 폼 영역 (아이디/비번 입력창 + 버튼) */
-.login-form-area {
+.login__form {
     display: flex;
     align-items: center; /* 수직 중앙 정렬 */
     gap: 10px; /* 입력창들과 버튼 사이의 간격 */
@@ -59,20 +58,20 @@
 }
 
 /* 입력창들을 감싸는 그룹 (아이디 줄, 비밀번호 줄) */
-.input-group {
+.login__inputs {
     display: flex;
     flex-direction: column;
     gap: 5px; /* 아이디와 비밀번호 줄 사이 간격 */
 }
 
 /* 각 입력 줄 (라벨 + input) */
-.input-row {
+.login__input-row {
     display: flex;
     align-items: center;
 }
 
 /* '아이디', '비밀번호' 글자 스타일 */
-.input-label {
+.login__label {
     font-weight: bold;
     font-size: 15px;
     width: 70px; /* 라벨 너비를 고정하여 input 시작점 정렬 */
@@ -82,14 +81,14 @@
 }
 
 /* 실제 입력 필드 스타일 */
-.input-field {
+.login__input {
     width: 150px;
     height: 25px;
     border: 1px solid #3b5e96;
     padding: 0 5px;
 }
 
-.link{
+.login__signup-link{
     font-size: 13px;
     font-weight: bold;
     color: #000;
@@ -106,7 +105,7 @@
 /* ========================================
   경고 문구 스타일
   ======================================== */
-.warning-text {
+.login__warning-text {
     font-size: 16px;
     color: red;
     font-weight: 900;
@@ -115,7 +114,7 @@
 }
 
 /* 박스 내부 경고 문구 컨테이너 */
-.internal-warning {
+.login__warning {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -126,7 +125,7 @@
 /* ========================================
   하단 외부 경고 문구
   ======================================== */
-.external-warning-container {
+.login__footer {
     width: 70%;
     margin-top: 10px;
     display: flex;
@@ -134,16 +133,8 @@
     gap: 20px;
 }
 
-/* 외부 경고 문구 블록 */
-.external-text {
-    font-size: 16px;
-    color: red;
-    font-weight: 900;
-    line-height: 1.6;
-}
 
-
-.remain-time {
+.login__remain-time {
     margin-top: 30px;
     padding: 10px 15px;
 
@@ -155,7 +146,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.remain-time strong {
+.login__remain-time strong {
     display: block;
     margin-top: 8px;
     font-size:20px;
@@ -163,7 +154,7 @@
 }
 
 
-.guide-link {
+.login__guide-link {
     display: inline-block;
     margin-top: 20px;
     padding: 7px 14px;
