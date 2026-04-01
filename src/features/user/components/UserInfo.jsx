@@ -6,7 +6,7 @@ const userUrl = "/image/userIcon.jpg";
 
 const UserInfo = () => {
     const userData = useUserStore((state) => state.user);
-    cons
+
     const infoItems = [
         { label: '년 도', value: '2026년 1학기' },
         { label: '학 번', value: userData?.studentId || '정보 없음' },
@@ -19,17 +19,17 @@ const UserInfo = () => {
     ];
 
     return (
-        <div className="user-info-container">
-            <div className="user-info-header">
-                <span className="user-icon">  <img src={userUrl} alt="userIcon" className="user-icon-img"/></span>
-                <span className="user-title">사용자정보</span>
+        <div className="user-info">
+            <div className="section__header">
+                <img src={userUrl} alt="userIcon" className="section__icon"/>
+                <span className="section__title">사용자정보</span>
             </div>
 
-            <div className="user-details-list">
+            <div className="user-info__list">
                 {infoItems.map((item, index) => (
-                    <div className="detail-item" key={index}>
-                        <span className="detail-label">{item.label} :</span>
-                        <span className="detail-value">{item.value} </span>
+                    <div className="user-info__item" key={item.label}>
+                        <span className="user-info__label">{item.label} :</span>
+                        <span className="user-info__value">{item.value} </span>
                     </div>
                 ))}
             </div>
