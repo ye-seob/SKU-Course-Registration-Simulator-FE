@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import "../styles/ActionButtons.css"
-import useViewStore from "../../view/store/viewStore.js";
 import {useNavigate} from "react-router-dom";
+import useModeStore from "../../../mode/store/modeStore.js";
 
 const ACTION_LIST = [
     {
@@ -29,7 +29,7 @@ const ACTION_LIST = [
 
 const ActionButton = ({ id, label, icon, description, animationDelay }) => {
     const [isVisible, setIsVisible] = useState(false);
-    const setMode = useViewStore((state) => state.setMode);
+    const setMode = useModeStore((state) => state.setMode);
     const navigate = useNavigate();
 
     useEffect(() => {

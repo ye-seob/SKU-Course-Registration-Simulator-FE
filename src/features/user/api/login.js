@@ -1,11 +1,9 @@
 // login.js
 import api from '../../../shared/api/axiosInstance.js';
 import useUserStore from '../store/userStore.js';
-import useViewStore from "../../view/store/viewStore.js";
 
 export const login = async (loginData) => {
     const setUser = useUserStore.getState().setUser;
-    const setMode = useViewStore.getState().setMode;
 
     try {
         const response = await api.post("/auth/login", loginData);
@@ -14,7 +12,6 @@ export const login = async (loginData) => {
 
         localStorage.setItem('accessToken', token);
         setUser(userData); // Zustand 상태 저장
-        setMode("HOME");
 
         return userData; // navigate는 컴포넌트에서 처리
     } catch (error) {
