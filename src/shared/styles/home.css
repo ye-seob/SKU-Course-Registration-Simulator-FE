@@ -1,26 +1,25 @@
-:root {
-    --sidebar-width: 150px;
-}
-
-.home-container {
+.layout {
     display: flex;
     height: 100vh;
     width: 100vw;
-    overflow-x: auto;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
-.side-bar-container {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 100;
-}
-
-.main-content-area {
+.layout__main {
     flex: 1;
-    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow-y: auto;
-    padding: 10px;
-    background-color: #fff;
+}
+.content {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     gap: 16px;
+ }
+
+.content__top,
+.content__bottom {
+    width: 100%;
 }

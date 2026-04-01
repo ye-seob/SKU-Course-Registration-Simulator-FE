@@ -1,7 +1,7 @@
 const TwoSectionLayout = ({ top, bottom }) => (
-    <div className="main-content-area">
-        <div className="section-top">{top}</div>
-        <div className="section-bottom">{bottom}</div>
+    <div className="content">
+        <div className="content__top">{top}</div>
+        <div className="content__bottom">{bottom}</div>
     </div>
 );
 
