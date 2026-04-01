@@ -33,12 +33,12 @@ const Search = () => {
     };
 
     return (
-        <div className="search-container">
-            <span className="search-label">교과목명으로 검색</span>
-            <div className="search-input-group">
+        <div className="search">
+            <span className="search__label">교과목명으로 검색</span>
+            <div className="search__group">
                 <input
                     type="text"
-                    className="search-input"
+                    className="search__input"
                     value={searchKeyword}
                     onChange={handleInputChange}
                     onKeyPress={handleKeyPress}
