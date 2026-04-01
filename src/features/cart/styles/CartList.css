@@ -1,4 +1,4 @@
-.cart-wrapper {
+.my-lecture {
     width: 100%;
     overflow-x: auto;
     height: 50vh;
@@ -6,7 +6,7 @@
     box-sizing: border-box;
     margin-top: 30px;
 }
-.cart-info-bar {
+.my-lecture__header {
     width: 100%;
     display: flex;
     align-items: center;
@@ -18,18 +18,18 @@
     height: 30px;
 }
 
-.cart-info-left {
+.my-lecture__info {
     display: flex;
     align-items: center;
 }
 
-.cart-info-left .info-desc {
+.my-lecture__info .my-lecture__description {
     color: #666;
     margin-left: 10px;
 }
 
 
-.cart-info-right {
+.my-lecture__count {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -38,13 +38,8 @@
 }
 
 
-.cart-info-left .info-desc {
-    color: #666;
-    margin-left: 10px;
-}
 
-
-.highlight-num {
+.my-lecture__highlight {
     color: #d14d4d;
 }
 
@@ -93,7 +88,7 @@
     vertical-align: middle;
 }
 
-.cartList-table tbody td.text-left {
+.text-left {
     text-align: left;
     padding-left: 8px;
 }
