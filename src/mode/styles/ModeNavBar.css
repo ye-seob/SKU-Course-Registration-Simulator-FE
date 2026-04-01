@@ -1,0 +1,49 @@
+.mode-nav {
+    width: 27%;
+    display: flex;
+    justify-content: center;
+    transform: translate(-15%);
+    border-radius: 999px;
+
+    background: #fafafa;
+    padding: 4px;
+}
+
+.mode-nav__tab {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.mode-nav__tab:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+
+.mode-nav__tab--active {
+    background: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+
+.mode-nav__label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4E5968;
+}
+
+/* 활성 텍스트 (확실하게 강조) */
+.mode-nav__tab--active .mode-nav__label {
+    color: #0F172A;
+    font-weight: 700;
+}
+
+/* 클릭 느낌 */
+.mode-nav__tab:active {
+    transform: scale(0.96);
+}
+

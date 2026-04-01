@@ -1,0 +1,105 @@
+/* backdrop */
+.modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+}
+
+/* card */
+.modal__card {
+    width: 340px;
+    padding: 28px 24px 22px;
+
+    background: #ffffff;
+    border-radius: 20px;
+
+    box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.12),
+            0 2px 8px rgba(0, 0, 0, 0.06);
+
+    animation: modalFadeIn 0.2s ease;
+}
+
+/* title */
+.modal__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+
+    margin-bottom: 10px;
+}
+
+/* description */
+.modal__desc {
+    font-size: 14px;
+    color: #6b7280;
+
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+/* actions */
+.modal__actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* base button */
+.modal__button {
+    flex: 1;
+    padding: 11px 0;
+
+    border-radius: 12px;
+    border: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+/* cancel */
+.modal__button--cancel {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.modal__button--cancel:hover {
+    background: #e5e7eb;
+}
+
+/* confirm */
+.modal__button--confirm {
+    background: #333333;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.modal__button--confirm:hover {
+    background: #222;
+}
+
+/* active feedback */
+.modal__button:active {
+    transform: scale(0.96);
+}
+
+/* animation */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
