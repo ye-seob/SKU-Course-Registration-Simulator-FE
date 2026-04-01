@@ -1,11 +1,14 @@
-.lecture-wrapper {
+.lecture {
     width: 100%;
     height: 50vh;
     padding: 10px;
     box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.lectureList-info-bar {
+.lecture__header {
     font-size: 14px;
     color: #3b5e96;
     font-weight: bold;
@@ -29,8 +32,9 @@
     text-align: center;
 }
 
-.lecture-table thead tr, .lecture-table tbody tr {
-    height: 28px;
+.lecture-table thead tr,
+.lecture-table tbody tr {
+    height:  28px;
 }
 
 .lecture-table thead th {
@@ -66,7 +70,7 @@
     padding-left: 8px;
 }
 
-.cart-btn {
+.lecture-row__action-btn {
     background-color: #c3d99c;
     border: 1px solid #666;
     color: #333;
@@ -74,11 +78,14 @@
     padding: 0px 6px;
     cursor: pointer;
 }
-
-.cart-btn:hover{
+.lecture-row__text--left {
+    text-align: left;
+    padding-left: 8px;
+}
+.lecture-row__action-btn:hover{
     background-color: #b6cc8e;
 }
-.rating-cell {
+.lecture-row__rating {
     position: relative;
     cursor: pointer;
     overflow: visible !important;

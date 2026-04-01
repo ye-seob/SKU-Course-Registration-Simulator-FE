@@ -7,9 +7,6 @@ const useViewStore = create(
             hasSeenIntro: false,
             finishIntro: (value) => set({ hasSeenIntro: value }),
 
-            mode: localStorage.getItem("loginMode") || "ENROLL",
-            setMode: (mode) => set({ mode }),
-
             isWaiting: false,
             setWaiting: (value) => set({ isWaiting: value }),
         }),

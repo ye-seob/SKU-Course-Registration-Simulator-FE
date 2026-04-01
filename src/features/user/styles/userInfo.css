@@ -1,50 +1,23 @@
-.user-info-container {
+.user-info {
     background-color: #f8fcf4;
-    width: 160px;
-    overflow: hidden;
+    color: #333;
 }
 
-
-.user-info-header {
-    background-color: #bbd788;
-    padding: 7px 10px;
-    height: 15px;
-    display: flex;
-    align-items: center;
-}
-
-
-.user-icon-img {
-    width: 20px;
-    height: 20px;
-    object-fit: cover;
-    margin-top: 5px ;
-    margin-right: 5px;
-}
-
-.user-title {
-    font-size: 0.85em;
-    font-weight: 600;
-    color: white;
-
-}
-
-.user-details-list {
+.user-info__list {
     padding: 10px;
     line-height: 1.2;
 }
 
-.detail-item {
+.user-info__item {
     display: flex;
     font-size: 0.8em;
-    color: black;
 }
 
-.detail-label {
+.user-info__label {
     font-weight: bold;
 }
 
-.detail-value {
+.user-info__value {
     margin-left: 10px;
     font-weight: normal;
 }

@@ -1,24 +1,9 @@
-.logout-container {
+.logout {
     background-color: #f8fcf4;
-    width: var(--sidebar-width);
-    overflow: hidden;
 }
 
-.logout-header {
-    background-color: #bbd788;
-    padding: 7px 10px;
-    height: 15px;
-    display: flex;
-    align-items: center;
-}
-
-.door {
-    font-size: 1em;
-    margin-top: 3px;
-}
-
-.logout-btn {
-    font-size:  0.8em;
+.logout__button {
+    font-size:  0.85em;
     font-weight: 600;
     color: white;
     background: none;

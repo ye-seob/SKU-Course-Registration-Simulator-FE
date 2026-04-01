@@ -1,13 +1,11 @@
 import React from 'react';
 import UserInfo from '../../features/user/components/UserInfo.jsx';
-import CustomButton from './CustomButton.jsx';
-import CustomDropdown from './CustomDropdown.jsx';
 import '../styles/SideBar.css';
 import Search from "../../features/search/components/Search.jsx";
 import Logout from "../../features/user/components/Logout.jsx";
-import {MAJOR, TYPE} from "../util/constant.js";
 import useUserStore from "../../features/user/store/userStore.js";
 import useSearchStore from "../../features/search/store/searchStore.js";
+import ButtonSection from "./ ButtonSection.jsx";
 
 const SideBar = ({onRefresh}) => {
     const { user } = useUserStore();
@@ -26,75 +24,14 @@ const SideBar = ({onRefresh}) => {
     }
 
         return (
-        <div className="side-bar-container">
-            <div className="logo-area">
-                <img
-                    src={logoUrl}
-                    alt="서경대학교 로고"
-                    className="logo-image"
-                />
-            </div>
-
+        <div className="sidebar">
+            <img
+                src={logoUrl}
+                alt="서경대학교 로고"
+                className="logo-image"
+            />
             <UserInfo />
-
-            <div className="button-section">
-                <div className="section-header">
-                    <span className="plus-icon">➕</span>
-                    <span className="section-title">정규학기 수강</span>
-                </div>
-
-                <div className="button-group">
-                    <CustomButton
-                        text="자학과 교과목"
-                        onClick={() => handleClick(user?.major, "")}
-                    />
-
-                    <CustomButton
-                        text="공통 교양"
-                        onClick={() => handleClick(
-                            "",
-                            (user?.college === "미래융합학부1" || user?.college === "미래융합학부2")
-                                ? "미융교선"
-                                : "교선"
-                        )}
-                    />
-
-                    <CustomDropdown
-                        options={TYPE}
-                        placeholder="---강좌 선택 ----"
-                        onChange={(value) => handleClick("", value)}
-                    />
-
-                    <CustomButton
-                        text="장바구니"
-                        onClick={() => handleClick("", "",true)}
-                    />
-
-                    <CustomButton text="타학과 교과목" />
-
-                    <CustomDropdown
-                        options={MAJOR.map(m => m.name)}
-                        placeholder="-- 타학과 선택 --"
-                        onChange={(value) => handleClick(value, "")}
-                    />
-
-                    <CustomButton
-                        text="복수전공"
-                        onClick={() => alert("추후 업데이트")}
-                    />
-
-                    <CustomButton
-                        text="부전공"
-                        onClick={() => alert("추후 업데이트")}
-                    />
-
-                    <CustomButton
-                        text="융합전공"
-                        onClick={() => alert("추후 업데이트")}
-                    />
-                </div>
-            </div>
-
+            <ButtonSection user={user} onNavigate={handleClick}/>
             <Search />
             <Logout />
         </div>

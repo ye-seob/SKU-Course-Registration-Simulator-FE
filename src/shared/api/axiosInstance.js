@@ -27,7 +27,7 @@ api.interceptors.response.use(
 
         if (status === 403) {
              localStorage.removeItem('accessToken');
-             window.location.href = '/login';
+             window.location.href = '/home';
         }
 
 

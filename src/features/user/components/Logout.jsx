@@ -2,7 +2,8 @@ import React from 'react';
 import '../styles/logout.css';
 import useUserStore from "../store/userStore.js";
 import {useNavigate} from "react-router-dom";
-import {LuDoorOpen} from "react-icons/lu";
+
+const imgUrl = "/image/logout.gif";
 
 const Logout = () => {
     const { setUser } = useUserStore();
@@ -12,22 +13,23 @@ const Logout = () => {
         const confirmed = window.confirm("로그아웃 하시겠습니까?");
         if (!confirmed) return;
 
-
-        localStorage.clear();
+        localStorage.removeItem("user")
+        localStorage.removeItem("view-storage")
+        localStorage.removeItem("search-storage")
+        localStorage.removeItem("ratingTooltip")
+        localStorage.removeItem("accessToken")
 
         setUser(null);
-
-
-        navigate("/login");
+        navigate("/home");
 
         window.location.reload();
     };
 
     return (
-        <div className="logout-container">
-            <div className="logout-header">
-                <span className="door"><LuDoorOpen /></span>
-                <button className="logout-btn" onClick={handleLogout}>
+        <div className="logout">
+            <div className="section__header">
+                <img src={imgUrl} alt="logoutIcon" className="section__icon"/>
+                <button className="logout__button" onClick={handleLogout}>
                     로그아웃
                 </button>
             </div>
