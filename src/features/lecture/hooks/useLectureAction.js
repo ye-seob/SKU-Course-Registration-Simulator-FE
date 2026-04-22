@@ -4,10 +4,13 @@ import useViewStore from '../../view/store/viewStore';
 import useQueueSocket from '../../enrollment/hooks/useQueueSocket';
 import {addCart, getCart} from '../../cart/api/cart';
 import {MODE} from '../../../mode/constants/mode.js';
+import {getPracticeEnrollments, practiceEnrollment} from "../../enrollment/api/practiceEnrollment.js";
+import useEnrollmentStore from "../../enrollment/store/enrollmentStore.js";
 
 export const useLectureAction = () => {
     const { mode } = useMode();
     const { setCartList } = useCartStore();
+    const { setPracticeEnrollmentList } = useEnrollmentStore();
     const { setWaiting } = useViewStore();
     const { connectQueue } = useQueueSocket();
 
@@ -31,7 +34,8 @@ export const useLectureAction = () => {
             label: "신청",
             confirmMsg: "선택한 강의를 신청하시겠습니까?",
             action: async (lectureId) => {
-                // 추후 구현
+                await practiceEnrollment(lectureId);
+                setPracticeEnrollmentList(await getPracticeEnrollments());
             },
         },
     };

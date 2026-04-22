@@ -4,13 +4,16 @@ import useEnrollmentStore from '../../enrollment/store/enrollmentStore';
 import {deleteCart, getCart} from '../../cart/api/cart';
 import {cancelEnrollment, getEnrollments} from '../../enrollment/api/enrollment';
 import {MODE} from '../../../mode/constants/mode';
+import {cancelPracticeEnrollment, getPracticeEnrollments} from "../../enrollment/api/practiceEnrollment.js";
 
 const MAX_ROWS = 10;
 
 export const useMyLectureAction = (list) => {
     const { mode } = useMode();
     const { setCartList } = useCartStore();
-    const { setEnrollmentList } = useEnrollmentStore();
+    const { setEnrollmentList,setPracticeEnrollmentList} = useEnrollmentStore();
+
+
 
     const ACTION_MAP = {
         [MODE.CART]: {
@@ -47,7 +50,8 @@ export const useMyLectureAction = (list) => {
             confirmMsg: "연습 신청을 취소하시겠습니까?",
             countText: (l) => `[ 신청과목 수 : ${l.length} ]`,
             action: async (lectureId) => {
-                // 추후 구현
+                await cancelPracticeEnrollment(lectureId);
+                setPracticeEnrollmentList(await getPracticeEnrollments());
             },
         },
     };
